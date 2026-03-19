@@ -1,0 +1,168 @@
+#!/bin/bash
+# md2pdf — Interactive setup script
+
+set -e
+
+SCRIPT_DIR="$(cd "$(dirname "$0")" && pwd)"
+CONFIG_FILE="$SCRIPT_DIR/config.json"
+
+echo "═══════════════════════════════════════════"
+echo "  md2pdf — Markdown to PDF Setup"
+echo "═══════════════════════════════════════════"
+echo ""
+
+# ── Check Node.js ────────────────────────────────────────────────────────
+NODE_PATH=$(which node 2>/dev/null || true)
+if [ -z "$NODE_PATH" ]; then
+  echo "Error: Node.js is not installed or not in PATH."
+  echo "Install it from https://nodejs.org or via Homebrew: brew install node"
+  exit 1
+fi
+NODE_VERSION=$($NODE_PATH --version)
+echo "Found Node.js $NODE_VERSION at $NODE_PATH"
+
+# ── Install dependencies ────────────────────────────────────────────────
+echo ""
+echo "Installing dependencies..."
+cd "$SCRIPT_DIR"
+npm install --silent
+echo "Dependencies installed."
+
+# ── Output directory ────────────────────────────────────────────────────
+echo ""
+DEFAULT_OUTPUT="$HOME/Documents/MDpdf"
+read -p "Where should PDFs be saved? [$DEFAULT_OUTPUT]: " OUTPUT_DIR
+OUTPUT_DIR="${OUTPUT_DIR:-$DEFAULT_OUTPUT}"
+
+# Expand ~ if used
+OUTPUT_DIR="${OUTPUT_DIR/#\~/$HOME}"
+
+mkdir -p "$OUTPUT_DIR"
+echo "Output directory: $OUTPUT_DIR"
+
+# ── Write config ────────────────────────────────────────────────────────
+cat > "$CONFIG_FILE" << EOF
+{
+  "outputDir": "$OUTPUT_DIR",
+  "nodePath": "$NODE_PATH"
+}
+EOF
+echo "Config saved to config.json"
+
+# ── Generate wrapper scripts ────────────────────────────────────────────
+echo ""
+echo "Generating wrapper scripts..."
+
+# Terminal wrappers
+cat > "$SCRIPT_DIR/sbts-md2pdf.sh" << EOF
+#!/bin/bash
+exec "$NODE_PATH" "$SCRIPT_DIR/sbts-md2pdf.mjs" "\$@"
+EOF
+
+cat > "$SCRIPT_DIR/minion-noir.sh" << EOF
+#!/bin/bash
+exec "$NODE_PATH" "$SCRIPT_DIR/minion-noir.mjs" "\$@"
+EOF
+
+# Obsidian wrappers
+cat > "$SCRIPT_DIR/obsidian-sbts-md2pdf.sh" << EOF
+#!/bin/bash
+mkdir -p "$OUTPUT_DIR"
+"$NODE_PATH" "$SCRIPT_DIR/sbts-md2pdf.mjs" "\$1" "$OUTPUT_DIR"
+EOF
+
+cat > "$SCRIPT_DIR/obsidian-minion-noir.sh" << EOF
+#!/bin/bash
+mkdir -p "$OUTPUT_DIR"
+"$NODE_PATH" "$SCRIPT_DIR/minion-noir.mjs" "\$1" "$OUTPUT_DIR"
+EOF
+
+chmod +x "$SCRIPT_DIR"/*.sh
+
+echo "Wrapper scripts generated."
+
+# ── Symlinks ────────────────────────────────────────────────────────────
+echo ""
+BIN_DIR="$HOME/.local/bin"
+mkdir -p "$BIN_DIR"
+
+ln -sf "$SCRIPT_DIR/sbts-md2pdf.sh" "$BIN_DIR/sbts-md2pdf"
+ln -sf "$SCRIPT_DIR/minion-noir.sh" "$BIN_DIR/minion-noir"
+
+if echo "$PATH" | tr ':' '\n' | grep -q "$BIN_DIR"; then
+  echo "Commands linked: sbts-md2pdf, minion-noir"
+else
+  echo "Commands linked to $BIN_DIR"
+  echo "Add this to your shell profile to use them:"
+  echo "  export PATH=\"$BIN_DIR:\$PATH\""
+fi
+
+# ── Marked 2 integration ────────────────────────────────────────────────
+echo ""
+MARKED_CSS_DIR="$HOME/Library/Application Support/Marked/Custom CSS"
+if [ -d "$MARKED_CSS_DIR" ]; then
+  read -p "Marked 2 detected. Symlink CSS files for Marked 2? [Y/n]: " MARKED_ANSWER
+  MARKED_ANSWER="${MARKED_ANSWER:-Y}"
+  if [[ "$MARKED_ANSWER" =~ ^[Yy] ]]; then
+    ln -sf "$SCRIPT_DIR/styles/sbts-brand.css" "$MARKED_CSS_DIR/Minion Pro (SBTS Brand).css"
+    ln -sf "$SCRIPT_DIR/styles/minion-noir.css" "$MARKED_CSS_DIR/Minion Pro (all black).css"
+    echo "CSS files symlinked to Marked 2."
+  fi
+else
+  echo "Marked 2 not detected (optional — not required for md2pdf)."
+fi
+
+# ── Font check ──────────────────────────────────────────────────────────
+echo ""
+echo "Checking fonts..."
+MISSING_FONTS=0
+
+if ! fc-list | grep -qi "Minion Pro"; then
+  echo "  Missing: Minion Pro (required)"
+  MISSING_FONTS=1
+fi
+if ! fc-list | grep -qi "Lato"; then
+  echo "  Missing: Lato (required for SBTS Brand)"
+  MISSING_FONTS=1
+fi
+if ! fc-list | grep -qi "STIXGeneral"; then
+  echo "  Missing: STIX (required for SBTS Brand)"
+  MISSING_FONTS=1
+fi
+
+if [ $MISSING_FONTS -eq 1 ]; then
+  echo ""
+  echo "Font files are included in the fonts/ directory."
+  echo "To install: double-click each .otf/.ttf file and click 'Install Font.'"
+  echo ""
+  read -p "Open the fonts folder now? [Y/n]: " OPEN_FONTS
+  OPEN_FONTS="${OPEN_FONTS:-Y}"
+  if [[ "$OPEN_FONTS" =~ ^[Yy] ]]; then
+    open "$SCRIPT_DIR/fonts"
+  fi
+else
+  echo "  All required fonts are installed."
+fi
+
+# ── Raycast ─────────────────────────────────────────────────────────────
+echo ""
+echo "Raycast: Add $SCRIPT_DIR/raycast/ as a Script Command directory"
+echo "  Raycast > Settings > Extensions > Script Commands > Add Script Directory"
+
+# ── Summary ─────────────────────────────────────────────────────────────
+echo ""
+echo "═══════════════════════════════════════════"
+echo "  Setup complete!"
+echo "═══════════════════════════════════════════"
+echo ""
+echo "  Terminal:   sbts-md2pdf report.md"
+echo "              minion-noir report.md"
+echo ""
+echo "  Output:     $OUTPUT_DIR"
+echo ""
+echo "  Obsidian:   Add Shell Commands with:"
+echo "    $SCRIPT_DIR/obsidian-sbts-md2pdf.sh {{file_path:absolute}}"
+echo "    $SCRIPT_DIR/obsidian-minion-noir.sh {{file_path:absolute}}"
+echo ""
+echo "  Drafts:     See README.md for action scripts"
+echo ""

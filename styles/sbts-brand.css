@@ -1,0 +1,336 @@
+/* =========================================================================
+   Minion Pro (SBTS Brand) – Marked 2 Custom Style
+   Based on:  Minion Pro (all black).css by Brian Renshaw
+   Branding:  Southern Seminary Brand Guidelines (Fall 2023)
+   Created:   2026-03-19 with Claude Code
+
+   Typefaces: STIX (display), Lato (sans-serif), Minion Pro (body)
+   Colors:    Navy #072643, Gold #BB902D, Gray #D6D6D0
+             Green #37765B, Brick #90473B, Shield Blue #06538C
+   ========================================================================= */
+
+/* ---------- Brand Color Variables ---------- */
+:root {
+    --navy: #072643;
+    --gold: #BB902D;
+    --green: #37765B;
+    --brick: #90473B;
+    --shield-blue: #06538C;
+    --gray: #63666A;
+    --mid-gray: #D6D6D0;
+    --light-gray: #EAEAE6;
+}
+
+/* ---------- Base ---------- */
+body {
+    -webkit-font-smoothing: antialiased;
+    background: #fff;
+    color: #000;
+    font-family: "Minion Pro", "MinionPro-Regular", serif;
+    font-weight: 500;
+    font-size: 11pt;
+    line-height: 1.45;
+    margin: 30px 0 0;
+}
+
+#wrapper {
+    max-width: 800px !important;
+    margin: 0 auto;
+    padding: 20px 20px 600px !important;
+}
+
+/* ---------- Headings ---------- */
+
+/* H1: STIX Bold, navy, gold underline */
+h1 {
+    font-family: "STIXGeneral", "STIX", Georgia, serif;
+    font-weight: 700;
+    font-size: 20pt;
+    line-height: 1.2;
+    color: var(--navy);
+    margin: 1.6rem 0 0.4rem;
+    padding-bottom: 6px;
+    border-bottom: 2px solid var(--gold);
+}
+
+/* H2: Lato, gold, uppercase, gold rule */
+h2 {
+    font-family: "Lato", "Helvetica Neue", Helvetica, Arial, sans-serif;
+    font-weight: 400;
+    font-size: 11pt;
+    line-height: 1.2;
+    color: var(--gold);
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+    margin: 2rem 0 0.3rem;
+    padding-bottom: 4px;
+    border-bottom: 1px solid var(--gold);
+}
+
+/* H3: Minion Pro Bold Italic, navy */
+h3 {
+    font-family: "Minion Pro", serif;
+    font-weight: 700;
+    font-style: italic;
+    font-size: 13pt;
+    line-height: 1.2;
+    color: var(--navy);
+    margin: 1.4rem 0 0.3rem;
+}
+
+/* H4: Minion Pro Semibold, navy */
+h4 {
+    font-family: "Minion Pro", serif;
+    font-weight: 600;
+    font-size: 12pt;
+    line-height: 1.2;
+    color: var(--navy);
+    margin: 1rem 0 0.3rem;
+}
+
+/* H5: Lato, gold, uppercase */
+h5 {
+    font-family: "Lato", "Helvetica Neue", Helvetica, Arial, sans-serif;
+    font-weight: 600;
+    font-size: 9.5pt;
+    line-height: 1.2;
+    color: var(--gold);
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    margin: 0.9rem 0 0.3rem;
+}
+
+/* H6: Lato, gray, uppercase */
+h6 {
+    font-family: "Lato", "Helvetica Neue", Helvetica, Arial, sans-serif;
+    font-weight: 600;
+    font-size: 9pt;
+    line-height: 1.2;
+    color: var(--gray);
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    margin: 0.9rem 0 0.3rem;
+}
+
+/* ---------- Text & Links ---------- */
+p, td, div {
+    margin: 0 0 1em;
+    word-wrap: break-word;
+}
+
+a {
+    color: var(--navy);
+    text-decoration: underline;
+}
+
+strong {
+    color: var(--navy);
+}
+
+/* ---------- Lists ---------- */
+ul, ol { padding-left: 2em; }
+ul > li:not(.task-list-item)::before,
+ol > li:before { color: #000; }
+
+/* ---------- Block-quotes ---------- */
+blockquote {
+    margin: 2em 0;
+    padding: 0.5em 1.5em;
+    border-left: 4px solid var(--gold);
+    background: var(--light-gray);
+    font-family: "STIXGeneral", "STIX", Georgia, serif;
+    font-style: italic;
+}
+
+/* ---------- Horizontal Rules ---------- */
+hr {
+    border: none;
+    border-top: 1px solid var(--gold);
+    margin: 2em 0;
+}
+
+/* ---------- Tables ---------- */
+table {
+    border-collapse: collapse;
+    border: 0.5px solid #ccc;
+    width: 100%;
+    border-radius: 6px;
+    overflow: hidden;
+    margin: 0 0 1.1em;
+    table-layout: auto;
+}
+
+table th {
+    font-family: "Lato", "Helvetica Neue", Helvetica, Arial, sans-serif;
+    background: var(--navy);
+    color: #fff;
+    font-size: 0.95em;
+    font-weight: 600;
+    padding: 0.45em 0.7em;
+    text-align: left;
+}
+
+th:first-child,
+td:first-child {
+    width: 30%;
+}
+
+table tr:nth-child(even) { background: var(--light-gray); }
+
+table td {
+    font-family: "Lato", "Helvetica Neue", Helvetica, Arial, sans-serif;
+    padding: 0.45em 1em;
+    font-size: 0.9em;
+    border-bottom: 1px solid #ddd;
+    vertical-align: top;
+}
+
+/* ---------- Code & Mark ---------- */
+code, pre, pre code {
+    font-family: "Minion Pro", serif;
+    background: var(--light-gray);
+    padding: 2px 4px;
+    border-radius: 4px;
+}
+
+pre {
+    overflow: auto;
+    padding: 0.75em 1em;
+    line-height: 1.4;
+    white-space: pre;
+}
+
+mark {
+    background: #f5eedb;
+    padding: 0 4px;
+    border-radius: 4px;
+}
+
+/* ---------- Footnotes ---------- */
+.footnote, .footnotes {
+    font-family: "Lato", "Helvetica Neue", Helvetica, Arial, sans-serif;
+    font-size: 0.85em;
+    color: var(--gray);
+}
+
+/* ---------- Figure Captions ---------- */
+figcaption {
+    font-family: "Lato", "Helvetica Neue", Helvetica, Arial, sans-serif;
+    font-size: 0.85em;
+    color: var(--gray);
+    text-align: center;
+    margin-top: 0.3em;
+}
+
+/* ---------- Callout Boxes (md2pdf only) ---------- */
+.callout {
+    margin: 1.5em 0;
+    padding: 0.8em 1.2em;
+    border-left: 4px solid var(--gray);
+    border-radius: 0 6px 6px 0;
+    background: var(--light-gray);
+}
+
+.callout-title {
+    font-family: "Lato", "Helvetica Neue", Helvetica, Arial, sans-serif;
+    font-weight: 700;
+    font-size: 0.85em;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    margin-bottom: 0.4em;
+    color: var(--gray);
+}
+
+.callout-note {
+    border-left-color: var(--navy);
+    background: #edf1f3;
+}
+.callout-note .callout-title { color: var(--navy); }
+
+.callout-warning {
+    border-left-color: var(--gold);
+    background: #f9f4e8;
+}
+.callout-warning .callout-title { color: var(--gold); }
+
+.callout-tip {
+    border-left-color: var(--green);
+    background: #eef4f0;
+}
+.callout-tip .callout-title { color: var(--green); }
+
+/* ---------- Table of Contents (md2pdf only) ---------- */
+.table-of-contents {
+    font-family: "Lato", "Helvetica Neue", Helvetica, Arial, sans-serif;
+    font-size: 0.9em;
+    line-height: 1.6;
+    margin: 1.5em 0;
+    padding: 0.8em 1.2em;
+    background: var(--light-gray);
+    border-radius: 6px;
+}
+
+.table-of-contents ul {
+    list-style: none;
+    padding-left: 0;
+    margin: 0;
+}
+
+.table-of-contents ul ul {
+    padding-left: 1.5em;
+}
+
+.table-of-contents a {
+    color: var(--navy);
+    text-decoration: none;
+}
+
+.table-of-contents a:hover {
+    text-decoration: underline;
+}
+
+/* ---------- Definition Lists (md2pdf only) ---------- */
+dl {
+    margin: 1em 0;
+}
+
+dt {
+    font-family: "Minion Pro", "Minion Pro SmBd", serif;
+    font-weight: 600;
+    color: var(--navy);
+    margin-top: 0.8em;
+}
+
+dd {
+    margin-left: 1.5em;
+    margin-bottom: 0.5em;
+}
+
+/* ---------- Print (PDF) ---------- */
+@media print {
+    * {
+        -webkit-print-color-adjust: exact;
+        print-color-adjust: exact;
+    }
+
+    /* Page-break control */
+    h1, h2, h3, h4, h5, h6 {
+        page-break-after: avoid;
+        break-after: avoid;
+    }
+
+    table, figure, img, blockquote, .callout, dl {
+        page-break-inside: avoid;
+        break-inside: avoid;
+    }
+
+    p {
+        orphans: 3;
+        widows: 3;
+    }
+
+    tr {
+        page-break-inside: avoid;
+        break-inside: avoid;
+    }
+}

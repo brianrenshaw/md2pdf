@@ -1,0 +1,10 @@
+.DS_Store
+node_modules/
+config.json
+*.pdf
+
+# Generated wrapper scripts (created by install.sh)
+sbts-md2pdf.sh
+minion-noir.sh
+obsidian-sbts-md2pdf.sh
+obsidian-minion-noir.sh

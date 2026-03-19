@@ -1,0 +1,252 @@
+/* =========================================================================
+   Monochrome Minion – Marked custom style (11 pt base)
+   Typeface: Minion Pro everywhere
+   (Re-created with updated heading sizes/spacing and wider first table column)
+   ========================================================================= */
+
+/* ---------- Base ---------- */
+body {
+    -webkit-font-smoothing: antialiased;
+    background: #fff;
+    color: #000;
+    font-family: "Minion Pro", "MinionPro-Regular", serif;
+    font-size: 11pt;                 /* base size */
+    line-height: 1.35;
+    margin: 30px 0 0;
+}
+
+#wrapper {
+    max-width: 800px !important;
+    margin: 0 auto;
+    padding: 20px 20px 600px !important;
+}
+
+/* ---------- Headings ---------- */
+h1, h2, h3, h4, h5, h6 {
+    font-family: "Minion Pro", serif;
+    font-weight: 700;
+    line-height: 1.2;
+    color: #000;
+}
+
+/*  Revised sizes & tighter spacing  */
+h1 {
+    font-size: 16pt;            /* was 24 pt */
+    margin: 1.6rem 0 0.4rem;    /* reduced top/bottom space */
+}
+h2 {
+    font-size: 14pt;            /* matches previous h3 size */
+    margin: 1.4rem 0 0.3rem;
+}
+h3 {
+    font-size: 12.5pt;            /* scaled down accordingly */
+    margin: 1.2rem 0 0.3rem;
+}
+
+h4 { font-size: 12pt; font-weight: 600; margin: 1rem 0 0.3rem; }
+h5 { font-size: 11.5pt; font-weight: 600; margin: 0.9rem 0 0.3rem; }
+h6 { font-size: 11pt; font-style: italic; font-weight: 600; margin: 0.9rem 0 0.3rem; }
+
+/* ---------- Text & Links ---------- */
+p, td, div {
+    margin: 0 0 1em;
+    word-wrap: break-word;
+}
+
+a {
+    color: #000;
+    text-decoration: underline;
+}
+
+/* ---------- Lists ---------- */
+ul, ol { padding-left: 2em; }
+ul > li:not(.task-list-item)::before,
+ol > li:before { color: #000; }
+
+/* ---------- Block-quotes ---------- */
+blockquote {
+    margin: 2em 0;
+    padding: 0.2em 1.5em;
+    border-left: 4px solid #000;
+    background: #f7f7f7;
+    font-style: italic;
+}
+
+/* ---------- Tables ---------- */
+table {
+    border-collapse: collapse;
+    border: .5px solid #000;
+    width: 100%;
+    border-radius: 6px;
+    overflow: hidden;
+    margin: 0 0 1.1em;
+    table-layout: auto;
+    font-family: inherit;
+}
+
+table th {
+    background: #e6e6e6;
+    color: #000;
+    font-size: 1em;
+    font-weight: 600;
+    padding: 0.1em .7em;
+    text-align: left;
+}
+
+/*  Wider first column for readability  */
+th:first-child,
+td:first-child {
+    width: 30%;                 /* increase/decrease to taste */
+}
+
+table tr:nth-child(even)  { background: #f3f3f3; }
+table td {
+    padding: 0.6em 1em;
+    font-size: 0.9em;
+    border-bottom: 1px solid #ccc;
+    vertical-align: top;
+}
+
+/* ---------- Code & Mark ---------- */
+code, pre, pre code {
+    font-family: "Minion Pro", serif;
+    background: #f5f5f5;
+    padding: 2px 4px;
+    border-radius: 4px;
+}
+
+pre {
+    overflow: auto;
+    padding: 0.75em 1em;
+    line-height: 1.4;
+    white-space: pre;
+}
+
+mark {
+    background: #e6e6e6;
+    padding: 0 4px;
+    border-radius: 4px;
+}
+
+/* ---------- Callout Boxes ---------- */
+.callout {
+    margin: 1.5em 0;
+    padding: 0.8em 1.2em;
+    border-left: 4px solid #999;
+    border-radius: 0 6px 6px 0;
+    background: #f7f7f7;
+}
+
+.callout-title {
+    font-family: "Minion Pro", serif;
+    font-weight: 700;
+    font-size: 0.85em;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    margin-bottom: 0.4em;
+    color: #666;
+}
+
+.callout-note {
+    border-left-color: #333;
+}
+.callout-note .callout-title { color: #333; }
+
+.callout-warning {
+    border-left-color: #666;
+}
+.callout-warning .callout-title { color: #666; }
+
+.callout-tip {
+    border-left-color: #999;
+}
+.callout-tip .callout-title { color: #999; }
+
+/* ---------- Table of Contents ---------- */
+.table-of-contents {
+    font-family: "Minion Pro", serif;
+    font-size: 0.9em;
+    line-height: 1.6;
+    margin: 1.5em 0;
+    padding: 0.8em 1.2em;
+    background: #f5f5f5;
+    border-radius: 6px;
+}
+
+.table-of-contents ul {
+    list-style: none;
+    padding-left: 0;
+    margin: 0;
+}
+
+.table-of-contents ul ul {
+    padding-left: 1.5em;
+}
+
+.table-of-contents a {
+    color: #000;
+    text-decoration: none;
+}
+
+.table-of-contents a:hover {
+    text-decoration: underline;
+}
+
+/* ---------- Definition Lists ---------- */
+dl {
+    margin: 1em 0;
+}
+
+dt {
+    font-family: "Minion Pro", serif;
+    font-weight: 700;
+    color: #000;
+    margin-top: 0.8em;
+}
+
+dd {
+    margin-left: 1.5em;
+    margin-bottom: 0.5em;
+}
+
+/* ---------- Footnotes ---------- */
+.footnote, .footnotes {
+    font-size: 0.85em;
+    color: #666;
+}
+
+/* ---------- Figure Captions ---------- */
+figcaption {
+    font-size: 0.85em;
+    color: #666;
+    text-align: center;
+    margin-top: 0.3em;
+}
+
+/* ---------- Print (PDF) ---------- */
+@media print {
+    * {
+        -webkit-print-color-adjust: exact;
+        print-color-adjust: exact;
+    }
+
+    h1, h2, h3, h4, h5, h6 {
+        page-break-after: avoid;
+        break-after: avoid;
+    }
+
+    table, figure, img, blockquote, .callout, dl {
+        page-break-inside: avoid;
+        break-inside: avoid;
+    }
+
+    p {
+        orphans: 3;
+        widows: 3;
+    }
+
+    tr {
+        page-break-inside: avoid;
+        break-inside: avoid;
+    }
+}
