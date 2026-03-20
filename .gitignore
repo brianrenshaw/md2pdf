@@ -3,7 +3,7 @@ node_modules/
 config.json
 *.pdf
 # Allow sample PDFs
-!css-test-document-*.pdf
+!samples/*.pdf
 *.otf
 *.ttf
 

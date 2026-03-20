@@ -9,7 +9,7 @@ Convert Markdown files to professionally styled PDFs using Puppeteer. Includes t
 
 Both styles use Minion Pro as the body typeface with full support for callout boxes, auto-generated table of contents, definition lists, footnotes, and PDF bookmarks.
 
-**Sample output:** [Alumni Chapel PDF](css-test-document-alumni-chapel.pdf) | [Minion Noir PDF](css-test-document-minion-noir.pdf)
+**Sample output:** [Alumni Chapel PDF](samples/css-test-document-alumni-chapel.pdf?raw=true) | [Minion Noir PDF](samples/css-test-document-minion-noir.pdf?raw=true)
 
 ### Why multiple integrations?
 
