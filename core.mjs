@@ -82,7 +82,14 @@ function extractDirectives(source) {
     source = source.replace(headerMatch[0], "");
   }
 
-  return { footLeft, showHeader, source: source.trim() };
+  const footerMatch = source.match(/^\[\[no-footer\]\]\s*$/m);
+  let showFooter = true;
+  if (footerMatch) {
+    showFooter = false;
+    source = source.replace(footerMatch[0], "");
+  }
+
+  return { footLeft, showHeader, showFooter, source: source.trim() };
 }
 
 function buildHTML(markdownSource, title, css) {
@@ -113,7 +120,7 @@ function buildHTML(markdownSource, title, css) {
 // ── Convert ─────────────────────────────────────────────────────────────
 async function convert(inputPath, outputPath, css) {
   const raw = fs.readFileSync(inputPath, "utf-8");
-  const { footLeft, showHeader, source } = extractDirectives(raw);
+  const { footLeft, showHeader, showFooter, source } = extractDirectives(raw);
   const title = path.basename(inputPath, path.extname(inputPath));
   const html = buildHTML(source, title, css);
 
@@ -135,11 +142,12 @@ async function convert(inputPath, outputPath, css) {
           <span>${title}</span>
         </div>`
       : `<div></div>`,
-    footerTemplate: `
-      <div style="${footerStyle} width: 100%; padding: 0 0.5in; display: flex; justify-content: space-between;">
-        <span>${footLeft}</span>
-        <span>Page <span class="pageNumber"></span> of <span class="totalPages"></span></span>
-      </div>`,
+    footerTemplate: showFooter
+      ? `<div style="${footerStyle} width: 100%; padding: 0 0.5in; display: flex; justify-content: space-between;">
+          <span>${footLeft}</span>
+          <span>Page <span class="pageNumber"></span> of <span class="totalPages"></span></span>
+        </div>`
+      : `<div></div>`,
   });
 
   await browser.close();

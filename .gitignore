@@ -2,9 +2,11 @@
 node_modules/
 config.json
 *.pdf
+*.otf
+*.ttf
 
-# Generated wrapper scripts (created by install.sh)
-sbts-md2pdf.sh
-minion-noir.sh
-obsidian-sbts-md2pdf.sh
-obsidian-minion-noir.sh
+# Generated wrapper scripts (created by install.sh, not committed)
+/alumni-chapel.sh
+/minion-noir.sh
+/obsidian-alumni-chapel.sh
+/obsidian-minion-noir.sh

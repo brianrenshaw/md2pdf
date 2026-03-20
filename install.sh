@@ -54,9 +54,9 @@ echo ""
 echo "Generating wrapper scripts..."
 
 # Terminal wrappers
-cat > "$SCRIPT_DIR/sbts-md2pdf.sh" << EOF
+cat > "$SCRIPT_DIR/alumni-chapel.sh" << EOF
 #!/bin/bash
-exec "$NODE_PATH" "$SCRIPT_DIR/sbts-md2pdf.mjs" "\$@"
+exec "$NODE_PATH" "$SCRIPT_DIR/alumni-chapel.mjs" "\$@"
 EOF
 
 cat > "$SCRIPT_DIR/minion-noir.sh" << EOF
@@ -65,10 +65,10 @@ exec "$NODE_PATH" "$SCRIPT_DIR/minion-noir.mjs" "\$@"
 EOF
 
 # Obsidian wrappers
-cat > "$SCRIPT_DIR/obsidian-sbts-md2pdf.sh" << EOF
+cat > "$SCRIPT_DIR/obsidian-alumni-chapel.sh" << EOF
 #!/bin/bash
 mkdir -p "$OUTPUT_DIR"
-"$NODE_PATH" "$SCRIPT_DIR/sbts-md2pdf.mjs" "\$1" "$OUTPUT_DIR"
+"$NODE_PATH" "$SCRIPT_DIR/alumni-chapel.mjs" "\$1" "$OUTPUT_DIR"
 EOF
 
 cat > "$SCRIPT_DIR/obsidian-minion-noir.sh" << EOF
@@ -86,11 +86,11 @@ echo ""
 BIN_DIR="$HOME/.local/bin"
 mkdir -p "$BIN_DIR"
 
-ln -sf "$SCRIPT_DIR/sbts-md2pdf.sh" "$BIN_DIR/sbts-md2pdf"
+ln -sf "$SCRIPT_DIR/alumni-chapel.sh" "$BIN_DIR/alumni-chapel"
 ln -sf "$SCRIPT_DIR/minion-noir.sh" "$BIN_DIR/minion-noir"
 
 if echo "$PATH" | tr ':' '\n' | grep -q "$BIN_DIR"; then
-  echo "Commands linked: sbts-md2pdf, minion-noir"
+  echo "Commands linked: alumni-chapel, minion-noir"
 else
   echo "Commands linked to $BIN_DIR"
   echo "Add this to your shell profile to use them:"
@@ -104,8 +104,8 @@ if [ -d "$MARKED_CSS_DIR" ]; then
   read -p "Marked 2 detected. Symlink CSS files for Marked 2? [Y/n]: " MARKED_ANSWER
   MARKED_ANSWER="${MARKED_ANSWER:-Y}"
   if [[ "$MARKED_ANSWER" =~ ^[Yy] ]]; then
-    ln -sf "$SCRIPT_DIR/styles/sbts-brand.css" "$MARKED_CSS_DIR/Minion Pro (SBTS Brand).css"
-    ln -sf "$SCRIPT_DIR/styles/minion-noir.css" "$MARKED_CSS_DIR/Minion Pro (all black).css"
+    ln -sf "$SCRIPT_DIR/styles/alumni-chapel.css" "$MARKED_CSS_DIR/Alumni Chapel.css"
+    ln -sf "$SCRIPT_DIR/styles/minion-noir.css" "$MARKED_CSS_DIR/Minion Noir.css"
     echo "CSS files symlinked to Marked 2."
   fi
 else
@@ -122,24 +122,22 @@ if ! fc-list | grep -qi "Minion Pro"; then
   MISSING_FONTS=1
 fi
 if ! fc-list | grep -qi "Lato"; then
-  echo "  Missing: Lato (required for SBTS Brand)"
+  echo "  Missing: Lato (required for Alumni Chapel)"
   MISSING_FONTS=1
 fi
 if ! fc-list | grep -qi "STIXGeneral"; then
-  echo "  Missing: STIX (required for SBTS Brand)"
+  echo "  Missing: STIX (required for Alumni Chapel)"
   MISSING_FONTS=1
 fi
 
 if [ $MISSING_FONTS -eq 1 ]; then
   echo ""
-  echo "Font files are included in the fonts/ directory."
-  echo "To install: double-click each .otf/.ttf file and click 'Install Font.'"
+  echo "Download and install the missing fonts:"
+  echo "  Minion Pro: https://font.download/font/minion-pro"
+  echo "  Lato:       https://fonts.google.com/specimen/Lato"
+  echo "  STIX:       https://github.com/stipub/stixfonts"
   echo ""
-  read -p "Open the fonts folder now? [Y/n]: " OPEN_FONTS
-  OPEN_FONTS="${OPEN_FONTS:-Y}"
-  if [[ "$OPEN_FONTS" =~ ^[Yy] ]]; then
-    open "$SCRIPT_DIR/fonts"
-  fi
+  echo "Double-click each downloaded font file and click 'Install Font.'"
 else
   echo "  All required fonts are installed."
 fi
@@ -155,13 +153,13 @@ echo "════════════════════════�
 echo "  Setup complete!"
 echo "═══════════════════════════════════════════"
 echo ""
-echo "  Terminal:   sbts-md2pdf report.md"
+echo "  Terminal:   alumni-chapel report.md"
 echo "              minion-noir report.md"
 echo ""
 echo "  Output:     $OUTPUT_DIR"
 echo ""
 echo "  Obsidian:   Add Shell Commands with:"
-echo "    $SCRIPT_DIR/obsidian-sbts-md2pdf.sh {{file_path:absolute}}"
+echo "    $SCRIPT_DIR/obsidian-alumni-chapel.sh {{file_path:absolute}}"
 echo "    $SCRIPT_DIR/obsidian-minion-noir.sh {{file_path:absolute}}"
 echo ""
 echo "  Drafts:     See README.md for action scripts"

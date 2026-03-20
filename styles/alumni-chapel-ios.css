@@ -1,0 +1,217 @@
+Alumni Chapel iOS
+
+/* =========================================================================
+   Alumni Chapel – iOS Version for Drafts App
+   Embedded in a Draft tagged "css" via the "Preview/Print with CSS" action.
+   No #wrapper div, no custom fonts, no CSS variables, no @media print.
+   Based on: sbts-brand.css
+
+   Font mapping:
+     STIX         → Georgia, "Times New Roman", serif (heavier weight)
+     Minion Pro   → Georgia, "Times New Roman", serif
+     Lato         → -apple-system, "Helvetica Neue", Helvetica, Arial, sans-serif
+
+   Brand colors:
+     Navy #072643, Gold #BB902D, Green #37765B,
+     Gray #63666A, Mid Gray #D6D6D0, Light Gray #EAEAE6
+
+   Note: md2pdf-only syntax (::: callout fences) will render as plain text
+   in Drafts. The content inside callouts renders normally as paragraphs.
+   Directive links ([[foot-left]], [[no-header]], [[toc]]) are hidden below.
+   ========================================================================= */
+
+/* ---------- Base ---------- */
+body {
+    -webkit-font-smoothing: antialiased;
+    -webkit-text-size-adjust: 100%;
+    background: #fff;
+    color: #000;
+    font-family: Georgia, "Times New Roman", serif;
+    font-weight: 500;
+    font-size: 11pt;
+    line-height: 1.45;
+    max-width: 800px;
+    margin: 30px auto 0;
+    padding: 20px 20px 40px;
+}
+
+/* ---------- Headings ---------- */
+
+h1 {
+    font-family: Georgia, "Times New Roman", serif;
+    font-weight: 700;
+    font-size: 20pt;
+    line-height: 1.2;
+    color: #072643;
+    margin: 1.6rem 0 0.8rem;
+    padding-bottom: 6px;
+    border-bottom: 2px solid #BB902D;
+}
+
+h2 {
+    font-family: -apple-system, "Helvetica Neue", Helvetica, Arial, sans-serif;
+    font-weight: 400;
+    font-size: 11pt;
+    line-height: 1.2;
+    color: #BB902D;
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+    margin: 2.5rem 0 0.8rem;
+    padding-bottom: 4px;
+    border-bottom: 1px solid #BB902D;
+}
+
+h3 {
+    font-family: Georgia, "Times New Roman", serif;
+    font-weight: 700;
+    font-style: italic;
+    font-size: 13pt;
+    line-height: 1.2;
+    color: #072643;
+    margin: 1.4rem 0 0.5rem;
+}
+
+h4 {
+    font-family: Georgia, "Times New Roman", serif;
+    font-weight: 600;
+    font-size: 12pt;
+    line-height: 1.2;
+    color: #072643;
+    margin: 1rem 0 0.3rem;
+}
+
+h5 {
+    font-family: -apple-system, "Helvetica Neue", Helvetica, Arial, sans-serif;
+    font-weight: 600;
+    font-size: 9.5pt;
+    line-height: 1.2;
+    color: #BB902D;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    margin: 0.9rem 0 0.3rem;
+}
+
+h6 {
+    font-family: -apple-system, "Helvetica Neue", Helvetica, Arial, sans-serif;
+    font-weight: 600;
+    font-size: 9pt;
+    line-height: 1.2;
+    color: #63666A;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    margin: 0.9rem 0 0.3rem;
+}
+
+/* ---------- Text & Links ---------- */
+p, td, div {
+    margin: 0 0 1em;
+    word-wrap: break-word;
+}
+
+a {
+    color: #072643;
+    text-decoration: underline;
+}
+
+strong {
+    color: #072643;
+}
+
+/* ---------- Lists ---------- */
+ul, ol { padding-left: 2em; }
+
+/* ---------- Block-quotes ---------- */
+blockquote {
+    margin: 2em 0;
+    padding: 0.5em 1.5em;
+    border-left: 4px solid #BB902D;
+    background: #EAEAE6;
+    font-family: Georgia, "Times New Roman", serif;
+    font-style: italic;
+}
+
+/* ---------- Horizontal Rules ---------- */
+hr {
+    border: none;
+    border-top: 1px solid #BB902D;
+    margin: 2em 0;
+}
+
+/* ---------- Tables ---------- */
+table {
+    border-collapse: collapse;
+    border: 0.5px solid #ccc;
+    width: 100%;
+    border-radius: 6px;
+    overflow: hidden;
+    margin: 0 0 1.1em;
+    table-layout: auto;
+}
+
+table th {
+    font-family: -apple-system, "Helvetica Neue", Helvetica, Arial, sans-serif;
+    background: #072643;
+    color: #fff;
+    font-size: 0.95em;
+    font-weight: 600;
+    padding: 0.45em 0.7em;
+    text-align: left;
+}
+
+th:first-child,
+td:first-child {
+    width: 30%;
+}
+
+table tr:nth-child(even) { background: #EAEAE6; }
+
+table td {
+    font-family: -apple-system, "Helvetica Neue", Helvetica, Arial, sans-serif;
+    padding: 0.45em 1em;
+    font-size: 0.9em;
+    border-bottom: 1px solid #ddd;
+    vertical-align: top;
+}
+
+/* ---------- Code & Mark ---------- */
+code, pre, pre code {
+    font-family: Georgia, "Times New Roman", serif;
+    background: #EAEAE6;
+    padding: 2px 4px;
+    border-radius: 4px;
+}
+
+pre {
+    overflow: auto;
+    padding: 0.75em 1em;
+    line-height: 1.4;
+    white-space: pre;
+}
+
+mark {
+    background: #f5eedb;
+    padding: 0 4px;
+    border-radius: 4px;
+}
+
+/* ---------- Footnotes ---------- */
+.footnote, .footnotes {
+    font-family: -apple-system, "Helvetica Neue", Helvetica, Arial, sans-serif;
+    font-size: 0.85em;
+    color: #63666A;
+}
+
+/* ---------- Figure Captions ---------- */
+figcaption {
+    font-family: -apple-system, "Helvetica Neue", Helvetica, Arial, sans-serif;
+    font-size: 0.85em;
+    color: #63666A;
+    text-align: center;
+    margin-top: 0.3em;
+}
+
+/* ---------- Directives ---------- */
+/* Use HTML comment format for cross-platform compatibility:
+   <!-- foot-left: Your text here -->
+   <!-- no-header -->
+   Comments are invisible in all renderers. */

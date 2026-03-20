@@ -1,0 +1,154 @@
+Minion Noir iOS
+
+/* =========================================================================
+   Minion Noir – iOS Version for Drafts App
+   Embedded in a Draft tagged "css" via the "Preview/Print with CSS" action.
+   No #wrapper div, no custom fonts, no @media print.
+   Based on: minion-noir.css
+
+   Font mapping:
+     Minion Pro → Georgia, "Times New Roman", serif
+
+   Palette: Black / gray monochrome
+
+   Note: md2pdf-only syntax (::: callout fences) will render as plain text
+   in Drafts. The content inside callouts renders normally as paragraphs.
+   Directive links ([[foot-left]], [[no-header]], [[toc]]) are hidden below.
+   ========================================================================= */
+
+/* ---------- Base ---------- */
+body {
+    -webkit-font-smoothing: antialiased;
+    -webkit-text-size-adjust: 100%;
+    background: #fff;
+    color: #000;
+    font-family: Georgia, "Times New Roman", serif;
+    font-size: 11pt;
+    line-height: 1.35;
+    max-width: 800px;
+    margin: 30px auto 0;
+    padding: 20px 20px 40px;
+}
+
+/* ---------- Headings ---------- */
+h1, h2, h3, h4, h5, h6 {
+    font-family: Georgia, "Times New Roman", serif;
+    font-weight: 700;
+    line-height: 1.2;
+    color: #000;
+}
+
+h1 {
+    font-size: 16pt;
+    margin: 1.6rem 0 0.8rem;
+}
+h2 {
+    font-size: 14pt;
+    margin: 2.5rem 0 0.8rem;
+}
+h3 {
+    font-size: 12.5pt;
+    margin: 1.2rem 0 0.5rem;
+}
+
+h4 { font-size: 12pt; font-weight: 600; margin: 1rem 0 0.3rem; }
+h5 { font-size: 11.5pt; font-weight: 600; margin: 0.9rem 0 0.3rem; }
+h6 { font-size: 11pt; font-style: italic; font-weight: 600; margin: 0.9rem 0 0.3rem; }
+
+/* ---------- Text & Links ---------- */
+p, td, div {
+    margin: 0 0 1em;
+    word-wrap: break-word;
+}
+
+a {
+    color: #000;
+    text-decoration: underline;
+}
+
+/* ---------- Lists ---------- */
+ul, ol { padding-left: 2em; }
+
+/* ---------- Block-quotes ---------- */
+blockquote {
+    margin: 2em 0;
+    padding: 0.2em 1.5em;
+    border-left: 4px solid #000;
+    background: #f7f7f7;
+    font-style: italic;
+}
+
+/* ---------- Tables ---------- */
+table {
+    border-collapse: collapse;
+    border: .5px solid #000;
+    width: 100%;
+    border-radius: 6px;
+    overflow: hidden;
+    margin: 0 0 1.1em;
+    table-layout: auto;
+    font-family: inherit;
+}
+
+table th {
+    background: #e6e6e6;
+    color: #000;
+    font-size: 1em;
+    font-weight: 600;
+    padding: 0.1em .7em;
+    text-align: left;
+}
+
+th:first-child,
+td:first-child {
+    width: 30%;
+}
+
+table tr:nth-child(even) { background: #f3f3f3; }
+table td {
+    padding: 0.6em 1em;
+    font-size: 0.9em;
+    border-bottom: 1px solid #ccc;
+    vertical-align: top;
+}
+
+/* ---------- Code & Mark ---------- */
+code, pre, pre code {
+    font-family: Georgia, "Times New Roman", serif;
+    background: #f5f5f5;
+    padding: 2px 4px;
+    border-radius: 4px;
+}
+
+pre {
+    overflow: auto;
+    padding: 0.75em 1em;
+    line-height: 1.4;
+    white-space: pre;
+}
+
+mark {
+    background: #e6e6e6;
+    padding: 0 4px;
+    border-radius: 4px;
+}
+
+/* ---------- Footnotes ---------- */
+.footnote, .footnotes {
+    font-size: 0.85em;
+    color: #666;
+}
+
+/* ---------- Figure Captions ---------- */
+figcaption {
+    font-size: 0.85em;
+    color: #666;
+    text-align: center;
+    margin-top: 0.3em;
+}
+
+/* ---------- Directives ---------- */
+/* Use HTML comment format for cross-platform compatibility:
+   <!-- foot-left: Your text here -->
+   <!-- no-header -->
+   Comments are invisible in all renderers. */

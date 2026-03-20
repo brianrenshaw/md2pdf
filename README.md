@@ -1,13 +1,17 @@
 # md2pdf — Styled Markdown to PDF
 
-Convert Markdown files to professionally styled PDFs using Puppeteer. Includes two styles with a shared rendering engine.
+Convert Markdown files to professionally styled PDFs using Puppeteer. Includes two styles with a shared rendering engine. The Alumni Chapel style is based on the color scheme of The Southern Baptist Theological Seminary brand guidelines.
 
 | Command | Style | Description |
 |---------|-------|-------------|
-| `sbts-md2pdf` | SBTS Brand | Navy, gold, and green — Southern Seminary brand colors |
+| `alumni-chapel` | Alumni Chapel | Navy, gold, and green — inspired by Southern Seminary's brand palette |
 | `minion-noir` | Minion Noir | Monochrome — all black and gray |
 
 Both styles use Minion Pro as the body typeface with full support for callout boxes, auto-generated table of contents, definition lists, footnotes, and PDF bookmarks.
+
+### Why multiple integrations?
+
+Markdown lives everywhere — in code editors, note-taking apps, and writing tools. Rather than locking PDF generation to one workflow, md2pdf meets you where you write. Run it from the terminal after a build script, trigger it from Raycast while browsing files in Finder, convert a note directly from Obsidian, or print a styled draft from your phone. The same rendering engine and CSS produce identical output regardless of how you invoke it.
 
 ## Installation
 
@@ -39,17 +43,20 @@ If you get "command not found," install Node.js:
 **Option B — Clone with Git (if you use Git):**
 
 ```bash
-git clone https://github.com/YOUR_USERNAME/md2pdf.git
+git clone https://github.com/brianrenshaw/md2pdf.git
 ```
 
 ### Step 3: Install fonts
 
-Three font families are included in the `fonts/` folder. All three must be installed before the styles will render correctly.
+Three font families are required. Download each one, then install by double-clicking the font files and clicking **Install Font**.
 
-1. Open the `fonts/` folder inside the project
-2. Double-click each `.otf` and `.ttf` file
-3. Click **Install Font** in the Font Book preview that appears
-4. Repeat for all font files
+| Font | Used By | Download |
+|------|---------|----------|
+| [Minion Pro](https://font.download/font/minion-pro) | Both styles (body text, headings) | [font.download](https://font.download/font/minion-pro) |
+| [Lato](https://fonts.google.com/specimen/Lato) | Alumni Chapel (tables, subheadings) | [Google Fonts](https://fonts.google.com/specimen/Lato) |
+| [STIX](https://github.com/stipub/stixfonts) | Alumni Chapel (H1, blockquotes) | [GitHub](https://github.com/stipub/stixfonts) |
+
+Minion Noir only requires Minion Pro. The Alumni Chapel style requires all three.
 
 ### Step 4: Run the setup script
 
@@ -69,19 +76,19 @@ When it finishes, you'll see a summary with your terminal commands and Obsidian/
 
 * **macOS** (uses Puppeteer with Chromium for PDF rendering)
 * **Node.js** v18 or later ([nodejs.org](https://nodejs.org))
-* **Fonts** — Minion Pro, Lato, STIX (all included in `fonts/`)
+* **Fonts** — must be downloaded and installed separately (see above)
 
 ## Usage
 
 ```bash
 # Single file — PDF saved next to the source
-sbts-md2pdf report.md
+alumni-chapel report.md
 
 # Single file — PDF saved to a specific directory
-sbts-md2pdf report.md ~/Documents/MDpdf
+alumni-chapel report.md ~/Documents/MDpdf
 
 # All Markdown files in a folder
-sbts-md2pdf ~/reports/
+alumni-chapel ~/reports/
 
 # Monochrome style
 minion-noir report.md
@@ -137,7 +144,7 @@ Always compare against the previous term's baseline.
 :::
 ```
 
-**SBTS Brand callout colors:**
+**Alumni Chapel callout colors:**
 
 | Type | Accent | Background |
 |------|--------|------------|
@@ -183,18 +190,22 @@ Directives are special inline commands that control PDF output. They are strippe
 |-----------|--------|
 | `[[foot-left]] Your text` | Places custom text in the bottom-left footer of every page |
 | `[[no-header]]` | Removes the document title from the top-left header |
+| `[[no-footer]]` | Removes the entire footer (page numbers and foot-left text) |
 
 ```markdown
 [[foot-left]] Updated: 2026-03-19 v2.1
 [[no-header]]
+[[no-footer]]
 ```
+
+Place directives on their own line, anywhere in the document. These are md2pdf-only — remove them before previewing in Drafts on iOS.
 
 ## Integration
 
 ### Terminal
 
 ```bash
-sbts-md2pdf report.md
+alumni-chapel report.md
 minion-noir report.md
 ```
 
@@ -204,7 +215,7 @@ Add the `raycast/` directory as a Script Command directory in Raycast:
 
 Raycast > Settings > Extensions > Script Commands > Add Script Directory
 
-Two commands will appear: **SBTS Markdown PDF** and **Minion Noir PDF**.
+Two commands will appear: **Alumni Chapel PDF** and **Minion Noir PDF**.
 
 ### Obsidian
 
@@ -230,7 +241,7 @@ let writer = ShellScript.create('#!/bin/bash\nprintf "%s" "$1" > "$2"');
 writer.execute([draft.content, tmpPath]);
 
 // Change the path below to match your install location
-let runner = ShellScript.create('#!/bin/bash\nnode /path/to/md2pdf/sbts-md2pdf.mjs "$1" "$HOME/Documents/MDpdf" && rm -f "$1"');
+let runner = ShellScript.create('#!/bin/bash\nnode /path/to/md2pdf/alumni-chapel.mjs "$1" "$HOME/Documents/MDpdf" && rm -f "$1"');
 if (runner.execute([tmpPath])) {
     app.displaySuccessMessage(safeName + ".pdf saved");
 } else {
@@ -238,7 +249,34 @@ if (runner.execute([tmpPath])) {
 }
 ```
 
-For Minion Noir, change `sbts-md2pdf.mjs` to `minion-noir.mjs`.
+For Minion Noir, change `alumni-chapel.mjs` to `minion-noir.mjs`.
+
+### Drafts (iOS / iPadOS)
+
+Drafts on iOS cannot run shell scripts, but you can preview and print styled documents using the [Preview/Print with CSS](https://directory.getdrafts.com/a/1JN) action from the Drafts Directory.
+
+**Setup:**
+
+1. Install the action from the link above
+2. Create a new draft for each style you want, tagged with `css`:
+   * Title the first line `Alumni Chapel iOS` or `Minion Noir iOS`
+   * Paste the contents of `styles/alumni-chapel-ios.css` or `styles/minion-noir-ios.css` below the title
+3. Open any markdown draft, run the action, and select your CSS from the picker
+
+**iOS limitations:**
+
+The following md2pdf features do not work in Drafts on iOS and should be removed from your document before previewing:
+
+| Feature | Syntax to remove |
+|---------|-----------------|
+| Directives | `[[foot-left]] ...`, `[[no-header]]`, `[[no-footer]]` |
+| Callout boxes | `::: note`, `::: warning`, `::: tip`, and closing `:::` |
+| Auto table of contents | `[[toc]]` |
+| Definition lists | `Term` / `:   Definition` (unless using MultiMarkdown parser) |
+
+The content between callout fences will render as normal paragraphs. The fence lines themselves (`::: note`, `:::`) will appear as plain text.
+
+Standard Markdown (headings, bold, italic, links, images, lists, blockquotes, tables, footnotes, code blocks) works fully on iOS.
 
 ### Marked 2
 
@@ -249,17 +287,19 @@ If you use Marked 2, the install script can symlink the CSS files into Marked's 
 ```
 md2pdf/
   core.mjs                  Shared rendering engine
-  sbts-md2pdf.mjs           Entry point — SBTS Brand
+  alumni-chapel.mjs         Entry point — Alumni Chapel
   minion-noir.mjs           Entry point — Minion Noir
   install.sh                Interactive setup
   config.json               Generated per-user (gitignored)
   styles/
-    sbts-brand.css           SBTS Brand stylesheet
-    minion-noir.css          Monochrome stylesheet
-  fonts/                    Font files for installation
+    alumni-chapel.css        Alumni Chapel stylesheet
+    minion-noir.css          Minion Noir stylesheet
+    alumni-chapel-ios.css    Alumni Chapel for Drafts (iOS)
+    minion-noir-ios.css      Minion Noir for Drafts (iOS)
+  fonts/README.md           Font download links
   raycast/
-    sbts-md2pdf.sh           Raycast command (SBTS)
-    minion-noir.sh           Raycast command (Noir)
+    alumni-chapel.sh         Raycast command (Alumni Chapel)
+    minion-noir.sh           Raycast command (Minion Noir)
   package.json              Dependencies
 ```
 
@@ -268,7 +308,7 @@ md2pdf/
 ### Creating a New Style
 
 1. Copy an existing CSS file in `styles/` and modify it
-2. Create a new entry point (copy `sbts-md2pdf.mjs`, change the CSS filename)
+2. Create a new entry point (copy `alumni-chapel.mjs`, change the CSS filename)
 3. Run `./install.sh` to regenerate wrapper scripts
 
 ### Changing the Output Directory
@@ -284,3 +324,11 @@ Run `./install.sh` again, or edit `config.json` directly and re-run the install 
 * [markdown-it-table-of-contents](https://github.com/cmaas/markdown-it-table-of-contents) — Auto TOC
 * [markdown-it-deflist](https://github.com/markdown-it/markdown-it-deflist) — Definition lists
 * [puppeteer](https://pptr.dev) — Headless Chromium for PDF rendering
+
+## Acknowledgments
+
+Built with [Claude Code](https://claude.ai/claude-code) by Anthropic.
+
+## License
+
+[MIT](LICENSE)
