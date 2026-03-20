@@ -2,6 +2,8 @@
 node_modules/
 config.json
 *.pdf
+# Allow sample PDFs
+!css-test-document-*.pdf
 *.otf
 *.ttf
 

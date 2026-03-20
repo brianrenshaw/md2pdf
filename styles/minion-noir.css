@@ -1,7 +1,7 @@
 /* =========================================================================
-   Monochrome Minion – Marked custom style (11 pt base)
+   Minion Noir – Monochrome Markdown Style
    Typeface: Minion Pro everywhere
-   (Re-created with updated heading sizes/spacing and wider first table column)
+   Created: 2026-03-19 with Claude Code
    ========================================================================= */
 
 /* ---------- Base ---------- */
@@ -10,8 +10,9 @@ body {
     background: #fff;
     color: #000;
     font-family: "Minion Pro", "MinionPro-Regular", serif;
-    font-size: 11pt;                 /* base size */
-    line-height: 1.35;
+    font-weight: 500;
+    font-size: 11pt;
+    line-height: 1.45;
     margin: 30px 0 0;
 }
 
@@ -29,18 +30,25 @@ h1, h2, h3, h4, h5, h6 {
     color: #000;
 }
 
-/*  Revised sizes & tighter spacing  */
 h1 {
-    font-size: 16pt;            /* was 24 pt */
-    margin: 1.6rem 0 0.4rem;    /* reduced top/bottom space */
+    font-size: 20pt;
+    margin: 1.6rem 0 0.4rem;
+    padding-bottom: 6px;
+    border-bottom: 1.5px solid #000;
 }
 h2 {
-    font-size: 14pt;            /* matches previous h3 size */
-    margin: 1.4rem 0 0.3rem;
+    font-size: 12pt;
+    color: #444;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    margin: 2rem 0 0.3rem;
+    padding-bottom: 4px;
+    border-bottom: 1px solid #ccc;
 }
 h3 {
-    font-size: 12.5pt;            /* scaled down accordingly */
-    margin: 1.2rem 0 0.3rem;
+    font-size: 13pt;
+    font-style: italic;
+    margin: 1.4rem 0 0.3rem;
 }
 
 h4 { font-size: 12pt; font-weight: 600; margin: 1rem 0 0.3rem; }
@@ -67,9 +75,16 @@ ol > li:before { color: #000; }
 blockquote {
     margin: 2em 0;
     padding: 0.2em 1.5em;
-    border-left: 4px solid #000;
+    border-left: 4px solid #666;
     background: #f7f7f7;
     font-style: italic;
+}
+
+/* ---------- Horizontal Rules ---------- */
+hr {
+    border: none;
+    border-top: 1px solid #ccc;
+    margin: 2em 0;
 }
 
 /* ---------- Tables ---------- */
@@ -85,11 +100,11 @@ table {
 }
 
 table th {
-    background: #e6e6e6;
-    color: #000;
+    background: #333;
+    color: #fff;
     font-size: 1em;
     font-weight: 600;
-    padding: 0.1em .7em;
+    padding: 0.45em 0.7em;
     text-align: left;
 }
 

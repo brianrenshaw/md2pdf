@@ -9,6 +9,8 @@ Convert Markdown files to professionally styled PDFs using Puppeteer. Includes t
 
 Both styles use Minion Pro as the body typeface with full support for callout boxes, auto-generated table of contents, definition lists, footnotes, and PDF bookmarks.
 
+**Sample output:** [Alumni Chapel PDF](css-test-document-alumni-chapel.pdf) | [Minion Noir PDF](css-test-document-minion-noir.pdf)
+
 ### Why multiple integrations?
 
 Markdown lives everywhere — in code editors, note-taking apps, and writing tools. Rather than locking PDF generation to one workflow, md2pdf meets you where you write. Run it from the terminal after a build script, trigger it from Raycast while browsing files in Finder, convert a note directly from Obsidian, or print a styled draft from your phone. The same rendering engine and CSS produce identical output regardless of how you invoke it.

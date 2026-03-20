@@ -1,5 +1,9 @@
 # The Comprehensive Guide to Coastal Cartography
 
+Below is a working Table of Contents
+
+[[toc]]
+
 A working reference for the fictitious International Society of Coastal Mapmakers, maintained since 1987. This document covers the history, methods, and ongoing debates within the field. It also happens to exercise every Markdown rendering edge case your stylesheet will ever encounter.
 
 ## A Brief History of Shoreline Surveys
@@ -505,3 +509,5 @@ Walk through the document top to bottom and confirm each element renders correct
 * [ ] Anchor links scroll to the correct sections
 * [ ] Centered HTML content renders as expected
 * [ ] Empty table cells do not break table structure
+
+[[foot-left]] <b>Updated:</b> March 2026

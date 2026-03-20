@@ -1,6 +1,6 @@
-Minion Noir iOS
+/* Minion Noir iOS
 
-/* =========================================================================
+   =========================================================================
    Minion Noir – iOS Version for Drafts App
    Embedded in a Draft tagged "css" via the "Preview/Print with CSS" action.
    No #wrapper div, no custom fonts, no @media print.
@@ -13,7 +13,6 @@ Minion Noir iOS
 
    Note: md2pdf-only syntax (::: callout fences) will render as plain text
    in Drafts. The content inside callouts renders normally as paragraphs.
-   Directive links ([[foot-left]], [[no-header]], [[toc]]) are hidden below.
    ========================================================================= */
 
 /* ---------- Base ---------- */
@@ -23,8 +22,9 @@ body {
     background: #fff;
     color: #000;
     font-family: Georgia, "Times New Roman", serif;
+    font-weight: 500;
     font-size: 11pt;
-    line-height: 1.35;
+    line-height: 1.45;
     max-width: 800px;
     margin: 30px auto 0;
     padding: 20px 20px 40px;
@@ -39,15 +39,23 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 h1 {
-    font-size: 16pt;
+    font-size: 20pt;
     margin: 1.6rem 0 0.8rem;
+    padding-bottom: 6px;
+    border-bottom: 1.5px solid #000;
 }
 h2 {
-    font-size: 14pt;
+    font-size: 12pt;
+    color: #444;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
     margin: 2.5rem 0 0.8rem;
+    padding-bottom: 4px;
+    border-bottom: 1px solid #ccc;
 }
 h3 {
-    font-size: 12.5pt;
+    font-size: 13pt;
+    font-style: italic;
     margin: 1.2rem 0 0.5rem;
 }
 
@@ -73,9 +81,16 @@ ul, ol { padding-left: 2em; }
 blockquote {
     margin: 2em 0;
     padding: 0.2em 1.5em;
-    border-left: 4px solid #000;
+    border-left: 4px solid #666;
     background: #f7f7f7;
     font-style: italic;
+}
+
+/* ---------- Horizontal Rules ---------- */
+hr {
+    border: none;
+    border-top: 1px solid #ccc;
+    margin: 2em 0;
 }
 
 /* ---------- Tables ---------- */
@@ -91,11 +106,11 @@ table {
 }
 
 table th {
-    background: #e6e6e6;
-    color: #000;
+    background: #333;
+    color: #fff;
     font-size: 1em;
     font-weight: 600;
-    padding: 0.1em .7em;
+    padding: 0.45em 0.7em;
     text-align: left;
 }
 
@@ -148,7 +163,5 @@ figcaption {
 }
 
 /* ---------- Directives ---------- */
-/* Use HTML comment format for cross-platform compatibility:
-   <!-- foot-left: Your text here -->
-   <!-- no-header -->
-   Comments are invisible in all renderers. */
+/* md2pdf directives ([[foot-left]], [[no-header]], etc.) should be
+   removed from your document before previewing in Drafts. */
