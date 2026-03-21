@@ -117,15 +117,28 @@ echo ""
 echo "Checking fonts..."
 MISSING_FONTS=0
 
-if ! fc-list | grep -qi "Minion Pro"; then
+check_font() {
+  local font_name="$1"
+  if command -v fc-list &>/dev/null; then
+    # Linux
+    fc-list | grep -qi "$font_name"
+  elif [ "$(uname)" = "Darwin" ]; then
+    # macOS — check system font directories
+    find ~/Library/Fonts /Library/Fonts /System/Library/Fonts -iname "*${font_name}*" 2>/dev/null | grep -q .
+  else
+    return 1
+  fi
+}
+
+if ! check_font "Minion Pro"; then
   echo "  Missing: Minion Pro (required)"
   MISSING_FONTS=1
 fi
-if ! fc-list | grep -qi "Lato"; then
+if ! check_font "Lato"; then
   echo "  Missing: Lato (required for Alumni Chapel)"
   MISSING_FONTS=1
 fi
-if ! fc-list | grep -qi "STIXGeneral"; then
+if ! check_font "STIX"; then
   echo "  Missing: STIX (required for Alumni Chapel)"
   MISSING_FONTS=1
 fi

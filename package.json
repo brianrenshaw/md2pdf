@@ -1,9 +1,20 @@
 {
   "name": "md2pdf",
   "version": "1.0.0",
-  "description": "Convert Markdown to branded SBTS PDF using Puppeteer",
+  "description": "Convert Markdown to professionally styled PDF using Puppeteer",
   "private": true,
   "type": "module",
+  "author": "Brian Renshaw",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/brianrenshaw/md2pdf.git"
+  },
+  "bugs": {
+    "url": "https://github.com/brianrenshaw/md2pdf/issues"
+  },
+  "homepage": "https://github.com/brianrenshaw/md2pdf",
+  "keywords": ["markdown", "pdf", "puppeteer", "styling", "converter"],
   "dependencies": {
     "markdown-it": "^14.0.0",
     "markdown-it-anchor": "^9.2.0",
