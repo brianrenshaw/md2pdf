@@ -58,7 +58,7 @@ h6 { font-size: 11pt; font-style: italic; font-weight: 600; margin: 0.9rem 0 0.3
 /* ---------- Text & Links ---------- */
 p, td, div {
     margin: 0 0 1em;
-    word-wrap: break-word;
+    overflow-wrap: break-word;
 }
 
 a {
@@ -90,13 +90,13 @@ hr {
 /* ---------- Tables ---------- */
 table {
     border-collapse: collapse;
-    border: .5px solid #000;
+    border: 0.5px solid #000;
     width: 100%;
     border-radius: 6px;
     overflow: hidden;
     margin: 0 0 1.1em;
     table-layout: auto;
-    font-family: inherit;
+
 }
 
 table th {
@@ -226,12 +226,14 @@ dd {
 
 /* ---------- Footnotes ---------- */
 .footnote, .footnotes {
+    font-family: "Minion Pro", "MinionPro-Regular", serif;
     font-size: 0.85em;
     color: #666;
 }
 
 /* ---------- Figure Captions ---------- */
 figcaption {
+    font-family: "Minion Pro", "MinionPro-Regular", serif;
     font-size: 0.85em;
     color: #666;
     text-align: center;

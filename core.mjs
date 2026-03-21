@@ -1,5 +1,5 @@
 // core.mjs — Shared Markdown-to-PDF conversion logic
-// Used by sbts-md2pdf.mjs and minion-noir.mjs
+// Used by alumni-chapel.mjs and minion-noir.mjs
 
 import fs from "fs";
 import path from "path";

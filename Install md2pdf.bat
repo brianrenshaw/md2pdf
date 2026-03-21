@@ -139,7 +139,22 @@ echo @echo off
 echo "%NODE_CMD%" "%SCRIPT_DIR%\minion-noir.mjs" %%*
 ) > "%SCRIPT_DIR%\minion-noir.bat"
 
-echo Wrapper scripts generated: alumni-chapel.bat, minion-noir.bat
+(
+echo @echo off
+echo "%NODE_CMD%" "%SCRIPT_DIR%\sage.mjs" %%*
+) > "%SCRIPT_DIR%\sage.bat"
+
+(
+echo @echo off
+echo "%NODE_CMD%" "%SCRIPT_DIR%\oxford.mjs" %%*
+) > "%SCRIPT_DIR%\oxford.bat"
+
+(
+echo @echo off
+echo "%NODE_CMD%" "%SCRIPT_DIR%\noir-plus.mjs" %%*
+) > "%SCRIPT_DIR%\noir-plus.bat"
+
+echo Wrapper scripts generated: alumni-chapel.bat, minion-noir.bat, sage.bat, oxford.bat, noir-plus.bat
 
 :: ── Font check ─────────────────────────────────────────────────────────
 echo.
@@ -172,12 +187,23 @@ if "!FOUND_STIX!"=="0" (
     set "MISSING_FONTS=1"
 )
 
+set "FOUND_NEWYORK=0"
+dir /b "%WINDIR%\Fonts\NewYork*" >nul 2>&1 && set "FOUND_NEWYORK=1"
+dir /b "%LOCALAPPDATA%\Microsoft\Windows\Fonts\NewYork*" >nul 2>&1 && set "FOUND_NEWYORK=1"
+dir /b "%WINDIR%\Fonts\*New York*" >nul 2>&1 && set "FOUND_NEWYORK=1"
+dir /b "%LOCALAPPDATA%\Microsoft\Windows\Fonts\*New York*" >nul 2>&1 && set "FOUND_NEWYORK=1"
+if "!FOUND_NEWYORK!"=="0" (
+    echo   Missing: New York [required for Oxford]
+    set "MISSING_FONTS=1"
+)
+
 if "!MISSING_FONTS!"=="1" (
     echo.
     echo Download and install the missing fonts:
     echo   Minion Pro: https://font.download/font/minion-pro
     echo   Lato:       https://fonts.google.com/specimen/Lato
     echo   STIX:       https://github.com/stipub/stixfonts
+    echo   New York:   https://developer.apple.com/fonts/
     echo.
     echo Double-click each downloaded font file and click "Install."
 ) else (
@@ -192,9 +218,12 @@ echo =============================================
 echo.
 echo   Usage:   alumni-chapel.bat report.md
 echo            minion-noir.bat report.md
+echo            sage.bat report.md
+echo            oxford.bat report.md
+echo            noir-plus.bat report.md
 echo.
 echo   Output:  %OUTPUT_DIR%
 echo.
-echo   You can also drag a .md file onto alumni-chapel.bat or minion-noir.bat.
+echo   You can also drag a .md file onto any of the .bat files.
 echo.
 pause

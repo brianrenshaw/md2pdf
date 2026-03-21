@@ -1,13 +1,16 @@
 # md2pdf — Styled Markdown to PDF
 
-Convert Markdown files to professionally styled PDFs using Puppeteer. Includes two styles with a shared rendering engine. The Alumni Chapel style is based on the color scheme of The Southern Baptist Theological Seminary brand guidelines.
+Convert Markdown files to professionally styled PDFs using Puppeteer. Includes five styles with a shared rendering engine.
 
 | Command | Style | Description |
 |---------|-------|-------------|
 | `alumni-chapel` | Alumni Chapel | Navy, gold, and green — inspired by Southern Seminary's brand palette |
 | `minion-noir` | Minion Noir | Monochrome — all black and gray |
+| `sage` | Sage | Clean Swiss minimalist — cool blue-gray sans-serif |
+| `oxford` | Oxford | Warm serif academic — navy and burgundy with New York typeface |
+| `noir-plus` | Noir Plus | Modern dark mode — dark background with vibrant accents |
 
-Both styles use Minion Pro as the body typeface with full support for callout boxes, auto-generated table of contents, definition lists, footnotes, and PDF bookmarks.
+All styles support callout boxes, auto-generated table of contents, definition lists, footnotes, and PDF bookmarks.
 
 **Sample output:** [Alumni Chapel PDF](samples/css-test-document-alumni-chapel.pdf?raw=true) | [Minion Noir PDF](samples/css-test-document-minion-noir.pdf?raw=true)
 
@@ -30,11 +33,20 @@ Three font families are required. Download each one, then double-click the font 
 
 | Font | Used By | Download |
 |------|---------|----------|
-| [Minion Pro](https://font.download/font/minion-pro) | Both styles (body text, headings) | [font.download](https://font.download/font/minion-pro) |
+| [Minion Pro](https://font.download/font/minion-pro) | Alumni Chapel, Minion Noir (body text) | [font.download](https://font.download/font/minion-pro) |
 | [Lato](https://fonts.google.com/specimen/Lato) | Alumni Chapel (tables, subheadings) | [Google Fonts](https://fonts.google.com/specimen/Lato) |
 | [STIX](https://github.com/stipub/stixfonts) | Alumni Chapel (H1, blockquotes) | [GitHub](https://github.com/stipub/stixfonts) |
+| [New York](https://developer.apple.com/fonts/) | Oxford (body text, headings) | [Apple Fonts](https://developer.apple.com/fonts/) |
 
-Minion Noir only requires Minion Pro. The Alumni Chapel style requires all three.
+**Which fonts do I need?**
+
+| Style | Required Fonts |
+|-------|---------------|
+| Alumni Chapel | Minion Pro, Lato, STIX |
+| Minion Noir | Minion Pro |
+| Sage | None (uses system fonts) |
+| Oxford | New York (+ Minion Pro fallback) |
+| Noir Plus | None (uses system fonts) |
 
 ### Step 3: Run the installer
 
@@ -95,8 +107,11 @@ alumni-chapel report.md ~/Documents/MDpdf
 # All Markdown files in a folder
 alumni-chapel ~/reports/
 
-# Monochrome style
+# Other styles
 minion-noir report.md
+sage report.md
+oxford report.md
+noir-plus report.md
 ```
 
 Supported file extensions: `.md`, `.markdown`, `.txt`
@@ -165,6 +180,30 @@ Always compare against the previous term's baseline.
 | warning | Medium gray (#666) | Light gray |
 | tip | Light gray (#999) | Light gray |
 
+**Sage callout colors:**
+
+| Type | Accent | Background |
+|------|--------|------------|
+| note | Indigo (#5a67d8) | Light blue |
+| warning | Amber (#d69e2e) | Light yellow |
+| tip | Green (#38a169) | Light green |
+
+**Oxford callout colors:**
+
+| Type | Accent | Background |
+|------|--------|------------|
+| note | Navy (#1f3a5d) | Light blue-gray |
+| warning | Burgundy (#8b4513) | Warm cream |
+| tip | Green (#37765B) | Light green |
+
+**Noir Plus callout colors:**
+
+| Type | Accent | Background |
+|------|--------|------------|
+| note | Cyan (#4a9eff) | Dark blue |
+| warning | Orange (#ff8c00) | Dark amber |
+| tip | Mint (#52d273) | Dark green |
+
 ### Table of Contents
 
 Place `[[toc]]` on its own line to auto-generate a table of contents from H2, H3, and H4 headings. If omitted, no TOC appears.
@@ -212,6 +251,9 @@ Place directives on their own line, anywhere in the document. These are md2pdf-o
 ```bash
 alumni-chapel report.md
 minion-noir report.md
+sage report.md
+oxford report.md
+noir-plus report.md
 ```
 
 ### Raycast
@@ -220,7 +262,7 @@ Add the `raycast/` directory as a Script Command directory in Raycast:
 
 Raycast > Settings > Extensions > Script Commands > Add Script Directory
 
-Two commands will appear: **Alumni Chapel PDF** and **Minion Noir PDF**.
+Five commands will appear: **Alumni Chapel PDF**, **Minion Noir PDF**, **Sage PDF**, **Oxford PDF**, and **Noir Plus PDF**.
 
 ### Obsidian
 
@@ -254,7 +296,7 @@ if (runner.execute([tmpPath])) {
 }
 ```
 
-For Minion Noir, change `alumni-chapel.mjs` to `minion-noir.mjs`.
+For other styles, change `alumni-chapel.mjs` to `minion-noir.mjs`, `sage.mjs`, `oxford.mjs`, or `noir-plus.mjs`.
 
 ### Drafts (iOS / iPadOS)
 
@@ -297,16 +339,25 @@ md2pdf/
   core.mjs                  Shared rendering engine
   alumni-chapel.mjs         Entry point — Alumni Chapel
   minion-noir.mjs           Entry point — Minion Noir
+  sage.mjs                  Entry point — Sage
+  oxford.mjs                Entry point — Oxford
+  noir-plus.mjs             Entry point — Noir Plus
   config.json               Generated per-user (gitignored)
   styles/
     alumni-chapel.css        Alumni Chapel stylesheet
     minion-noir.css          Minion Noir stylesheet
+    sage.css                 Sage stylesheet
+    oxford.css               Oxford stylesheet
+    noir-plus.css            Noir Plus stylesheet
     alumni-chapel-ios.css    Alumni Chapel for Drafts (iOS)
     minion-noir-ios.css      Minion Noir for Drafts (iOS)
   fonts/README.md           Font download links
   raycast/
     alumni-chapel.sh         Raycast command (Alumni Chapel)
     minion-noir.sh           Raycast command (Minion Noir)
+    sage.sh                  Raycast command (Sage)
+    oxford.sh                Raycast command (Oxford)
+    noir-plus.sh             Raycast command (Noir Plus)
   package.json              Dependencies
 ```
 

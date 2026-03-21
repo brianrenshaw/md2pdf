@@ -76,6 +76,21 @@ cat > "$SCRIPT_DIR/minion-noir.sh" << EOF
 exec "$NODE_PATH" "$SCRIPT_DIR/minion-noir.mjs" "\$@"
 EOF
 
+cat > "$SCRIPT_DIR/sage.sh" << EOF
+#!/bin/bash
+exec "$NODE_PATH" "$SCRIPT_DIR/sage.mjs" "\$@"
+EOF
+
+cat > "$SCRIPT_DIR/oxford.sh" << EOF
+#!/bin/bash
+exec "$NODE_PATH" "$SCRIPT_DIR/oxford.mjs" "\$@"
+EOF
+
+cat > "$SCRIPT_DIR/noir-plus.sh" << EOF
+#!/bin/bash
+exec "$NODE_PATH" "$SCRIPT_DIR/noir-plus.mjs" "\$@"
+EOF
+
 # Obsidian wrappers
 cat > "$SCRIPT_DIR/obsidian-alumni-chapel.sh" << EOF
 #!/bin/bash
@@ -89,6 +104,24 @@ mkdir -p "$OUTPUT_DIR"
 "$NODE_PATH" "$SCRIPT_DIR/minion-noir.mjs" "\$1" "$OUTPUT_DIR"
 EOF
 
+cat > "$SCRIPT_DIR/obsidian-sage.sh" << EOF
+#!/bin/bash
+mkdir -p "$OUTPUT_DIR"
+"$NODE_PATH" "$SCRIPT_DIR/sage.mjs" "\$1" "$OUTPUT_DIR"
+EOF
+
+cat > "$SCRIPT_DIR/obsidian-oxford.sh" << EOF
+#!/bin/bash
+mkdir -p "$OUTPUT_DIR"
+"$NODE_PATH" "$SCRIPT_DIR/oxford.mjs" "\$1" "$OUTPUT_DIR"
+EOF
+
+cat > "$SCRIPT_DIR/obsidian-noir-plus.sh" << EOF
+#!/bin/bash
+mkdir -p "$OUTPUT_DIR"
+"$NODE_PATH" "$SCRIPT_DIR/noir-plus.mjs" "\$1" "$OUTPUT_DIR"
+EOF
+
 chmod +x "$SCRIPT_DIR"/*.sh
 
 echo "Wrapper scripts generated."
@@ -100,13 +133,12 @@ mkdir -p "$BIN_DIR"
 
 ln -sf "$SCRIPT_DIR/alumni-chapel.sh" "$BIN_DIR/alumni-chapel"
 ln -sf "$SCRIPT_DIR/minion-noir.sh" "$BIN_DIR/minion-noir"
+ln -sf "$SCRIPT_DIR/sage.sh" "$BIN_DIR/sage"
+ln -sf "$SCRIPT_DIR/oxford.sh" "$BIN_DIR/oxford"
+ln -sf "$SCRIPT_DIR/noir-plus.sh" "$BIN_DIR/noir-plus"
 
-if echo "$PATH" | tr ':' '\n' | grep -q "$BIN_DIR"; then
-  echo "Commands linked: alumni-chapel, minion-noir"
-elif [ "$NON_INTERACTIVE" = true ]; then
-  echo "Commands linked to $BIN_DIR"
-else
-  echo "Commands linked to $BIN_DIR"
+echo "Commands linked: alumni-chapel, minion-noir, sage, oxford, noir-plus"
+if ! echo "$PATH" | tr ':' '\n' | grep -q "$BIN_DIR"; then
   echo "Add this to your shell profile to use them:"
   echo "  export PATH=\"$BIN_DIR:\$PATH\""
 fi
@@ -124,6 +156,9 @@ if [ -d "$MARKED_CSS_DIR" ]; then
   if [[ "$MARKED_ANSWER" =~ ^[Yy] ]]; then
     ln -sf "$SCRIPT_DIR/styles/alumni-chapel.css" "$MARKED_CSS_DIR/Alumni Chapel.css"
     ln -sf "$SCRIPT_DIR/styles/minion-noir.css" "$MARKED_CSS_DIR/Minion Noir.css"
+    ln -sf "$SCRIPT_DIR/styles/sage.css" "$MARKED_CSS_DIR/Sage.css"
+    ln -sf "$SCRIPT_DIR/styles/oxford.css" "$MARKED_CSS_DIR/Oxford.css"
+    ln -sf "$SCRIPT_DIR/styles/noir-plus.css" "$MARKED_CSS_DIR/Noir Plus.css"
     echo "CSS files symlinked to Marked 2."
   fi
 else
@@ -160,6 +195,12 @@ if ! check_font "STIX"; then
   echo "  Missing: STIX (required for Alumni Chapel)"
   MISSING_FONTS=1
 fi
+if ! check_font "NewYork"; then
+  if ! check_font "New York"; then
+    echo "  Missing: New York (required for Oxford)"
+    MISSING_FONTS=1
+  fi
+fi
 
 if [ $MISSING_FONTS -eq 1 ]; then
   echo ""
@@ -167,6 +208,7 @@ if [ $MISSING_FONTS -eq 1 ]; then
   echo "  Minion Pro: https://font.download/font/minion-pro"
   echo "  Lato:       https://fonts.google.com/specimen/Lato"
   echo "  STIX:       https://github.com/stipub/stixfonts"
+  echo "  New York:   https://developer.apple.com/fonts/"
   echo ""
   echo "Double-click each downloaded font file and click 'Install Font.'"
 else
@@ -186,12 +228,18 @@ echo "════════════════════════�
 echo ""
 echo "  Terminal:   alumni-chapel report.md"
 echo "              minion-noir report.md"
+echo "              sage report.md"
+echo "              oxford report.md"
+echo "              noir-plus report.md"
 echo ""
 echo "  Output:     $OUTPUT_DIR"
 echo ""
 echo "  Obsidian:   Add Shell Commands with:"
 echo "    $SCRIPT_DIR/obsidian-alumni-chapel.sh {{file_path:absolute}}"
 echo "    $SCRIPT_DIR/obsidian-minion-noir.sh {{file_path:absolute}}"
+echo "    $SCRIPT_DIR/obsidian-sage.sh {{file_path:absolute}}"
+echo "    $SCRIPT_DIR/obsidian-oxford.sh {{file_path:absolute}}"
+echo "    $SCRIPT_DIR/obsidian-noir-plus.sh {{file_path:absolute}}"
 echo ""
 echo "  Drafts:     See README.md for action scripts"
 echo ""

@@ -1,37 +1,35 @@
 /* =========================================================================
-   Alumni Chapel – Branded Markdown Style
-   Color palette inspired by Southern Seminary brand guidelines (Fall 2023)
-   Created: 2026-03-19 with Claude Code
+   Oxford – Warm Serif Academic Style
+   Scholarly, book-like design for long-form reading
+   Created: 2026-03-21 with Claude Code
 
-   Typefaces: STIX (display), Lato (sans-serif), Minion Pro (body)
-   Colors:    Navy #072643, Gold #BB902D, Gray #D6D6D0
-             Green #37765B, Brick #90473B, Shield Blue #06538C
+   Typefaces: New York (body & headings)
+   Colors:    Navy #1f3a5d, Burgundy #8b4513, Body #2c3e50
    ========================================================================= */
 
-/* ---------- Brand Color Variables ---------- */
+/* ---------- Color Variables ---------- */
 :root {
-    --navy: #072643;
-    --gold: #BB902D;
-    --green: #37765B;
-    --brick: #90473B;
-    --shield-blue: #06538C;
-    --gray: #63666A;
-    --mid-gray: #D6D6D0;
-    --light-gray: #EAEAE6;
-    --callout-note-bg: #edf1f3;
-    --callout-warning-bg: #f9f4e8;
-    --callout-tip-bg: #eef4f0;
+    --navy: #1f3a5d;
+    --burgundy: #8b4513;
+    --body: #2c3e50;
+    --subtle: #6c757d;
+    --border: #d4c5a9;
+    --surface: #faf8f3;
+    --code-bg: #f4f1ed;
+    --callout-note-bg: #eef2f7;
+    --callout-warning-bg: #fef5f0;
+    --callout-tip-bg: #f0f5ef;
 }
 
 /* ---------- Base ---------- */
 body {
     -webkit-font-smoothing: antialiased;
     background: #fff;
-    color: #000;
-    font-family: "Minion Pro", "MinionPro-Regular", serif;
-    font-weight: 500;
-    font-size: 11pt;
-    line-height: 1.45;
+    color: var(--body);
+    font-family: "New York", "Minion Pro", serif;
+    font-weight: 400;
+    font-size: 11.5pt;
+    line-height: 1.5;
     margin: 30px 0 0;
 }
 
@@ -43,35 +41,33 @@ body {
 
 /* ---------- Headings ---------- */
 
-/* H1: STIX Bold, navy, gold underline */
+/* H1: Bold, navy, burgundy underline */
 h1 {
-    font-family: "STIXGeneral", "STIX", Georgia, serif;
+    font-family: "New York", "Minion Pro", serif;
     font-weight: 700;
-    font-size: 20pt;
+    font-size: 22pt;
     line-height: 1.2;
     color: var(--navy);
     margin: 1.6rem 0 0.4rem;
     padding-bottom: 6px;
-    border-bottom: 2px solid var(--gold);
+    border-bottom: 2px solid var(--burgundy);
 }
 
-/* H2: Lato, gold, uppercase, gold rule */
+/* H2: Bold, burgundy */
 h2 {
-    font-family: "Lato", "Helvetica Neue", Helvetica, Arial, sans-serif;
-    font-weight: 400;
-    font-size: 11pt;
+    font-family: "New York", "Minion Pro", serif;
+    font-weight: 700;
+    font-size: 15pt;
     line-height: 1.2;
-    color: var(--gold);
-    text-transform: uppercase;
-    letter-spacing: 0.12em;
+    color: var(--burgundy);
     margin: 2rem 0 0.3rem;
     padding-bottom: 4px;
-    border-bottom: 1px solid var(--gold);
+    border-bottom: 1px solid var(--border);
 }
 
-/* H3: Minion Pro Bold Italic, navy */
+/* H3: Bold italic, navy */
 h3 {
-    font-family: "Minion Pro", serif;
+    font-family: "New York", "Minion Pro", serif;
     font-weight: 700;
     font-style: italic;
     font-size: 13pt;
@@ -80,9 +76,9 @@ h3 {
     margin: 1.4rem 0 0.3rem;
 }
 
-/* H4: Minion Pro Semibold, navy */
+/* H4: Semibold, navy */
 h4 {
-    font-family: "Minion Pro", serif;
+    font-family: "New York", "Minion Pro", serif;
     font-weight: 600;
     font-size: 12pt;
     line-height: 1.2;
@@ -90,27 +86,26 @@ h4 {
     margin: 1rem 0 0.3rem;
 }
 
-/* H5: Lato, gold, uppercase */
+/* H5: Small caps style, subtle */
 h5 {
-    font-family: "Lato", "Helvetica Neue", Helvetica, Arial, sans-serif;
+    font-family: "New York", "Minion Pro", serif;
     font-weight: 600;
-    font-size: 9.5pt;
+    font-size: 10pt;
     line-height: 1.2;
-    color: var(--gold);
+    color: var(--burgundy);
     text-transform: uppercase;
-    letter-spacing: 0.08em;
+    letter-spacing: 0.06em;
     margin: 0.9rem 0 0.3rem;
 }
 
-/* H6: Lato, gray, uppercase */
+/* H6: Italic, subtle */
 h6 {
-    font-family: "Lato", "Helvetica Neue", Helvetica, Arial, sans-serif;
+    font-family: "New York", "Minion Pro", serif;
     font-weight: 600;
-    font-size: 9pt;
+    font-style: italic;
+    font-size: 10pt;
     line-height: 1.2;
-    color: var(--gray);
-    text-transform: uppercase;
-    letter-spacing: 0.08em;
+    color: var(--subtle);
     margin: 0.9rem 0 0.3rem;
 }
 
@@ -121,7 +116,7 @@ p, td, div {
 }
 
 a {
-    color: var(--navy);
+    color: var(--burgundy);
     text-decoration: underline;
 }
 
@@ -132,29 +127,28 @@ strong {
 /* ---------- Lists ---------- */
 ul, ol { padding-left: 2em; }
 ul > li:not(.task-list-item)::before,
-ol > li:before { color: #000; }
+ol > li:before { color: var(--body); }
 
 /* ---------- Block-quotes ---------- */
 blockquote {
     margin: 2em 0;
     padding: 0.5em 1.5em;
-    border-left: 4px solid var(--gold);
-    background: var(--light-gray);
-    font-family: "STIXGeneral", "STIX", Georgia, serif;
+    border-left: 3px solid var(--burgundy);
+    background: var(--surface);
     font-style: italic;
 }
 
 /* ---------- Horizontal Rules ---------- */
 hr {
     border: none;
-    border-top: 1px solid var(--gold);
+    border-top: 1px solid var(--border);
     margin: 2em 0;
 }
 
 /* ---------- Tables ---------- */
 table {
     border-collapse: collapse;
-    border: 0.5px solid #ccc;
+    border: 0.5px solid var(--border);
     width: 100%;
     border-radius: 6px;
     overflow: hidden;
@@ -163,7 +157,6 @@ table {
 }
 
 table th {
-    font-family: "Lato", "Helvetica Neue", Helvetica, Arial, sans-serif;
     background: var(--navy);
     color: #fff;
     font-size: 0.95em;
@@ -177,20 +170,20 @@ td:first-child {
     width: 30%;
 }
 
-table tr:nth-child(even) { background: var(--light-gray); }
+table tr:nth-child(even) { background: var(--surface); }
 
 table td {
-    font-family: "Lato", "Helvetica Neue", Helvetica, Arial, sans-serif;
     padding: 0.45em 1em;
     font-size: 0.9em;
-    border-bottom: 1px solid #ddd;
+    border-bottom: 1px solid var(--border);
     vertical-align: top;
 }
 
 /* ---------- Code & Mark ---------- */
 code, pre, pre code {
-    font-family: "Minion Pro", serif;
-    background: var(--light-gray);
+    font-family: "New York", "Minion Pro", serif;
+    font-size: 0.95em;
+    background: var(--code-bg);
     padding: 2px 4px;
     border-radius: 4px;
 }
@@ -210,16 +203,14 @@ mark {
 
 /* ---------- Footnotes ---------- */
 .footnote, .footnotes {
-    font-family: "Lato", "Helvetica Neue", Helvetica, Arial, sans-serif;
     font-size: 0.85em;
-    color: var(--gray);
+    color: var(--subtle);
 }
 
 /* ---------- Figure Captions ---------- */
 figcaption {
-    font-family: "Lato", "Helvetica Neue", Helvetica, Arial, sans-serif;
     font-size: 0.85em;
-    color: var(--gray);
+    color: var(--subtle);
     text-align: center;
     margin-top: 0.3em;
 }
@@ -228,19 +219,18 @@ figcaption {
 .callout {
     margin: 1.5em 0;
     padding: 0.8em 1.2em;
-    border-left: 4px solid var(--gray);
+    border-left: 4px solid var(--subtle);
     border-radius: 0 6px 6px 0;
-    background: var(--light-gray);
+    background: var(--surface);
 }
 
 .callout-title {
-    font-family: "Lato", "Helvetica Neue", Helvetica, Arial, sans-serif;
     font-weight: 700;
     font-size: 0.85em;
     text-transform: uppercase;
     letter-spacing: 0.06em;
     margin-bottom: 0.4em;
-    color: var(--gray);
+    color: var(--subtle);
 }
 
 .callout-note {
@@ -250,25 +240,24 @@ figcaption {
 .callout-note .callout-title { color: var(--navy); }
 
 .callout-warning {
-    border-left-color: var(--gold);
+    border-left-color: var(--burgundy);
     background: var(--callout-warning-bg);
 }
-.callout-warning .callout-title { color: var(--gold); }
+.callout-warning .callout-title { color: var(--burgundy); }
 
 .callout-tip {
-    border-left-color: var(--green);
+    border-left-color: #37765B;
     background: var(--callout-tip-bg);
 }
-.callout-tip .callout-title { color: var(--green); }
+.callout-tip .callout-title { color: #37765B; }
 
 /* ---------- Table of Contents (md2pdf only) ---------- */
 .table-of-contents {
-    font-family: "Lato", "Helvetica Neue", Helvetica, Arial, sans-serif;
     font-size: 0.9em;
     line-height: 1.6;
     margin: 1.5em 0;
     padding: 0.8em 1.2em;
-    background: var(--light-gray);
+    background: var(--surface);
     border-radius: 6px;
 }
 
@@ -297,8 +286,7 @@ dl {
 }
 
 dt {
-    font-family: "Minion Pro", "Minion Pro SmBd", serif;
-    font-weight: 600;
+    font-weight: 700;
     color: var(--navy);
     margin-top: 0.8em;
 }
@@ -315,7 +303,6 @@ dd {
         print-color-adjust: exact;
     }
 
-    /* Page-break control */
     h1, h2, h3, h4, h5, h6 {
         page-break-after: avoid;
         break-after: avoid;
