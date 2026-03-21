@@ -12,3 +12,6 @@ config.json
 /minion-noir.sh
 /obsidian-alumni-chapel.sh
 /obsidian-minion-noir.sh
+
+# Local Node.js installation (downloaded by installer)
+.node/

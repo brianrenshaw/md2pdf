@@ -3,6 +3,7 @@
 
 import fs from "fs";
 import path from "path";
+import { fileURLToPath } from "url";
 import puppeteer from "puppeteer";
 import markdownit from "markdown-it";
 import footnote from "markdown-it-footnote";
@@ -12,7 +13,7 @@ import deflist from "markdown-it-deflist";
 import container from "markdown-it-container";
 
 // ── Config ──────────────────────────────────────────────────────────────
-const __dirname = path.dirname(new URL(import.meta.url).pathname);
+const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const CONFIG_PATH = path.join(__dirname, "config.json");
 const MARGIN = { top: "0.75in", right: "0.75in", bottom: "0.75in", left: "0.75in" };
 

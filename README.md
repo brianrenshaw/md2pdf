@@ -17,40 +17,16 @@ Markdown lives everywhere — in code editors, note-taking apps, and writing too
 
 ## Installation
 
-### Step 1: Install Node.js (if you don't have it)
-
-Node.js is a free tool that runs the conversion script. To check if you already have it, open **Terminal** (search for "Terminal" in Spotlight) and type:
-
-```
-node --version
-```
-
-If you see a version number (e.g., `v20.11.0`), you're good — skip to Step 2.
-
-If you get "command not found," install Node.js:
-
-1. Go to [nodejs.org](https://nodejs.org)
-2. Download the macOS installer (the LTS version is fine)
-3. Run the installer and follow the prompts
-
-### Step 2: Download this project
-
-**Option A — Download as ZIP (easiest):**
+### Step 1: Download
 
 1. Click the green **Code** button at the top of this page
 2. Click **Download ZIP**
 3. Unzip the downloaded file
-4. Move the `md2pdf` folder somewhere permanent (e.g., your home folder or a Projects folder)
+4. Move the `md2pdf-main` folder somewhere permanent (e.g., your home folder or a Projects folder)
 
-**Option B — Clone with Git (if you use Git):**
+### Step 2: Install fonts
 
-```bash
-git clone https://github.com/brianrenshaw/md2pdf.git
-```
-
-### Step 3: Install fonts
-
-Three font families are required. Download each one, then install by double-clicking the font files and clicking **Install Font**.
+Three font families are required. Download each one, then double-click the font files to install.
 
 | Font | Used By | Download |
 |------|---------|----------|
@@ -60,25 +36,52 @@ Three font families are required. Download each one, then install by double-clic
 
 Minion Noir only requires Minion Pro. The Alumni Chapel style requires all three.
 
-### Step 4: Run the setup script
+### Step 3: Run the installer
 
-1. Open **Terminal**
-2. Type `cd ` (with a space after it), then drag the `md2pdf` folder from Finder into the Terminal window — this fills in the path for you
-3. Press Enter
-4. Type `./install.sh` and press Enter
+#### macOS
 
-The setup script will walk you through a few questions:
+Double-click **Install md2pdf.command** in the md2pdf folder.
 
-* **Where should PDFs be saved?** — Press Enter to accept the default (`~/Documents/MDpdf`), or type a different folder path
-* **Symlink CSS files for Marked 2?** — If you use Marked 2, type `Y` to make the styles available in Marked 2 automatically
+> **First-time security note:** macOS may block the file because it was downloaded from the internet. If you see a warning:
+> 1. Right-click (or Control-click) the file
+> 2. Choose **Open**
+> 3. Click **Open** in the dialog
+>
+> You only need to do this once.
 
-When it finishes, you'll see a summary with your terminal commands and Obsidian/Drafts setup instructions.
+#### Windows
+
+Double-click **Install md2pdf.bat** in the md2pdf folder.
+
+---
+
+The installer will automatically:
+
+* Download and install Node.js locally (if not already on your system)
+* Install all dependencies
+* Set up terminal commands
+* Configure Marked 2 CSS if installed (macOS only)
+* Check for required fonts
+
+PDFs will be saved to `~/Documents/MDpdf` (macOS) or `Documents\MDpdf` (Windows) by default.
+
+### Advanced Installation
+
+If you prefer to run the setup interactively (choose a custom output directory, etc.):
+
+```bash
+git clone https://github.com/brianrenshaw/md2pdf.git
+cd md2pdf
+./install.sh
+```
+
+This requires Node.js v18+ to be installed already ([nodejs.org](https://nodejs.org)).
 
 ### Requirements Summary
 
-* **macOS** (uses Puppeteer with Chromium for PDF rendering)
-* **Node.js** v18 or later ([nodejs.org](https://nodejs.org))
+* **macOS** or **Windows**
 * **Fonts** — must be downloaded and installed separately (see above)
+* **Internet connection** — required on first run to download Node.js and dependencies
 
 ## Usage
 
@@ -288,10 +291,12 @@ If you use Marked 2, the install script can symlink the CSS files into Marked's 
 
 ```
 md2pdf/
+  Install md2pdf.command    Double-click installer (macOS)
+  Install md2pdf.bat        Double-click installer (Windows)
+  install.sh                Interactive setup (advanced)
   core.mjs                  Shared rendering engine
   alumni-chapel.mjs         Entry point — Alumni Chapel
   minion-noir.mjs           Entry point — Minion Noir
-  install.sh                Interactive setup
   config.json               Generated per-user (gitignored)
   styles/
     alumni-chapel.css        Alumni Chapel stylesheet

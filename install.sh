@@ -6,13 +6,20 @@ set -e
 SCRIPT_DIR="$(cd "$(dirname "$0")" && pwd)"
 CONFIG_FILE="$SCRIPT_DIR/config.json"
 
+# ── Non-interactive mode ───────────────────────────────────────────────
+NON_INTERACTIVE=false
+if [ "$1" = "--non-interactive" ]; then
+  NON_INTERACTIVE=true
+fi
+
 echo "═══════════════════════════════════════════"
 echo "  md2pdf — Markdown to PDF Setup"
 echo "═══════════════════════════════════════════"
 echo ""
 
 # ── Check Node.js ────────────────────────────────────────────────────────
-NODE_PATH=$(which node 2>/dev/null || true)
+# Use MD2PDF_NODE_PATH from environment if set (e.g. from .command installer)
+NODE_PATH="${MD2PDF_NODE_PATH:-$(which node 2>/dev/null || true)}"
 if [ -z "$NODE_PATH" ]; then
   echo "Error: Node.js is not installed or not in PATH."
   echo "Install it from https://nodejs.org or via Homebrew: brew install node"
@@ -25,14 +32,19 @@ echo "Found Node.js $NODE_VERSION at $NODE_PATH"
 echo ""
 echo "Installing dependencies..."
 cd "$SCRIPT_DIR"
-npm install --silent
+NPM_CMD="${MD2PDF_NPM_PATH:-npm}"
+"$NPM_CMD" install --silent
 echo "Dependencies installed."
 
 # ── Output directory ────────────────────────────────────────────────────
 echo ""
 DEFAULT_OUTPUT="$HOME/Documents/MDpdf"
-read -p "Where should PDFs be saved? [$DEFAULT_OUTPUT]: " OUTPUT_DIR
-OUTPUT_DIR="${OUTPUT_DIR:-$DEFAULT_OUTPUT}"
+if [ "$NON_INTERACTIVE" = true ]; then
+  OUTPUT_DIR="$DEFAULT_OUTPUT"
+else
+  read -p "Where should PDFs be saved? [$DEFAULT_OUTPUT]: " OUTPUT_DIR
+  OUTPUT_DIR="${OUTPUT_DIR:-$DEFAULT_OUTPUT}"
+fi
 
 # Expand ~ if used
 OUTPUT_DIR="${OUTPUT_DIR/#\~/$HOME}"
@@ -91,6 +103,8 @@ ln -sf "$SCRIPT_DIR/minion-noir.sh" "$BIN_DIR/minion-noir"
 
 if echo "$PATH" | tr ':' '\n' | grep -q "$BIN_DIR"; then
   echo "Commands linked: alumni-chapel, minion-noir"
+elif [ "$NON_INTERACTIVE" = true ]; then
+  echo "Commands linked to $BIN_DIR"
 else
   echo "Commands linked to $BIN_DIR"
   echo "Add this to your shell profile to use them:"
@@ -101,8 +115,12 @@ fi
 echo ""
 MARKED_CSS_DIR="$HOME/Library/Application Support/Marked/Custom CSS"
 if [ -d "$MARKED_CSS_DIR" ]; then
-  read -p "Marked 2 detected. Symlink CSS files for Marked 2? [Y/n]: " MARKED_ANSWER
-  MARKED_ANSWER="${MARKED_ANSWER:-Y}"
+  if [ "$NON_INTERACTIVE" = true ]; then
+    MARKED_ANSWER="Y"
+  else
+    read -p "Marked 2 detected. Symlink CSS files for Marked 2? [Y/n]: " MARKED_ANSWER
+    MARKED_ANSWER="${MARKED_ANSWER:-Y}"
+  fi
   if [[ "$MARKED_ANSWER" =~ ^[Yy] ]]; then
     ln -sf "$SCRIPT_DIR/styles/alumni-chapel.css" "$MARKED_CSS_DIR/Alumni Chapel.css"
     ln -sf "$SCRIPT_DIR/styles/minion-noir.css" "$MARKED_CSS_DIR/Minion Noir.css"
