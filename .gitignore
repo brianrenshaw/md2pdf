@@ -10,8 +10,14 @@ config.json
 # Generated wrapper scripts (created by install.sh, not committed)
 /alumni-chapel.sh
 /minion-noir.sh
+/sage.sh
+/oxford.sh
+/noir-plus.sh
 /obsidian-alumni-chapel.sh
 /obsidian-minion-noir.sh
+/obsidian-sage.sh
+/obsidian-oxford.sh
+/obsidian-noir-plus.sh
 
 # Local Node.js installation (downloaded by installer)
 .node/

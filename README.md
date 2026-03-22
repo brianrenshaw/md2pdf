@@ -2,17 +2,15 @@
 
 Convert Markdown files to professionally styled PDFs using Puppeteer. Includes five styles with a shared rendering engine.
 
-| Command | Style | Description |
-|---------|-------|-------------|
-| `alumni-chapel` | Alumni Chapel | Navy, gold, and green — inspired by Southern Seminary's brand palette |
-| `minion-noir` | Minion Noir | Monochrome — all black and gray |
-| `sage` | Sage | Clean Swiss minimalist — cool blue-gray sans-serif |
-| `oxford` | Oxford | Warm serif academic — navy and burgundy with New York typeface |
-| `noir-plus` | Noir Plus | Modern dark mode — dark background with vibrant accents |
+| Command | Style | Sample | Description |
+|---------|-------|--------|-------------|
+| `alumni-chapel` | Alumni Chapel | [**View PDF**](samples/css-test-document-alumni-chapel.pdf?raw=true) | Navy, gold, and green — inspired by Southern Seminary's brand palette |
+| `minion-noir` | Minion Noir | [**View PDF**](samples/css-test-document-minion-noir.pdf?raw=true) | Monochrome — all black and gray |
+| `sage` | Sage | [**View PDF**](samples/sage-sample.pdf?raw=true) | Clean Swiss minimalist — cool blue-gray sans-serif |
+| `oxford` | Oxford | [**View PDF**](samples/oxford-sample.pdf?raw=true) | Warm serif academic — navy and burgundy with New York typeface |
+| `noir-plus` | Noir Plus | [**View PDF**](samples/noir-plus-sample.pdf?raw=true) | Modern dark mode — dark background with vibrant accents |
 
 All styles support callout boxes, auto-generated table of contents, definition lists, footnotes, and PDF bookmarks.
-
-**Sample output:** [Alumni Chapel PDF](samples/css-test-document-alumni-chapel.pdf?raw=true) | [Minion Noir PDF](samples/css-test-document-minion-noir.pdf?raw=true)
 
 ### Why multiple integrations?
 
@@ -343,6 +341,9 @@ md2pdf/
   oxford.mjs                Entry point — Oxford
   noir-plus.mjs             Entry point — Noir Plus
   config.json               Generated per-user (gitignored)
+  samples/
+    css-test-document.md     Test document with all features
+    *.pdf                    Sample output for each style
   styles/
     alumni-chapel.css        Alumni Chapel stylesheet
     minion-noir.css          Minion Noir stylesheet
