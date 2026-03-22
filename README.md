@@ -285,8 +285,8 @@ let tmpPath = "/tmp/" + safeName + ".md";
 let writer = ShellScript.create('#!/bin/bash\nprintf "%s" "$1" > "$2"');
 writer.execute([draft.content, tmpPath]);
 
-// Change the path below to match your install location
-let runner = ShellScript.create('#!/bin/bash\nnode /path/to/md2pdf/alumni-chapel.mjs "$1" "$HOME/Documents/MDpdf" && rm -f "$1"');
+// Change the path and style name below to match your install location and preferred style
+let runner = ShellScript.create('#!/bin/bash\nnode /path/to/md2pdf/md2pdf.mjs "alumni-chapel" "$1" "$HOME/Documents/MDpdf" && rm -f "$1"');
 if (runner.execute([tmpPath])) {
     app.displaySuccessMessage(safeName + ".pdf saved");
 } else {
@@ -294,7 +294,7 @@ if (runner.execute([tmpPath])) {
 }
 ```
 
-For other styles, change `alumni-chapel.mjs` to `minion-noir.mjs`, `sage.mjs`, `oxford.mjs`, or `noir-plus.mjs`.
+For other styles, change `"alumni-chapel"` to `"minion-noir"`, `"sage"`, `"oxford"`, or `"noir-plus"`.
 
 ### Drafts (iOS / iPadOS)
 
@@ -334,32 +334,13 @@ md2pdf/
   Install md2pdf.command    Double-click installer (macOS)
   Install md2pdf.bat        Double-click installer (Windows)
   install.sh                Interactive setup (advanced)
+  md2pdf.mjs                Unified entry point (all styles)
   core.mjs                  Shared rendering engine
-  alumni-chapel.mjs         Entry point — Alumni Chapel
-  minion-noir.mjs           Entry point — Minion Noir
-  sage.mjs                  Entry point — Sage
-  oxford.mjs                Entry point — Oxford
-  noir-plus.mjs             Entry point — Noir Plus
   config.json               Generated per-user (gitignored)
-  samples/
-    css-test-document.md     Test document with all features
-    *.pdf                    Sample output for each style
-  styles/
-    alumni-chapel.css        Alumni Chapel stylesheet
-    minion-noir.css          Minion Noir stylesheet
-    sage.css                 Sage stylesheet
-    oxford.css               Oxford stylesheet
-    noir-plus.css            Noir Plus stylesheet
-    alumni-chapel-ios.css    Alumni Chapel for Drafts (iOS)
-    minion-noir-ios.css      Minion Noir for Drafts (iOS)
-  fonts/README.md           Font download links
-  raycast/
-    alumni-chapel.sh         Raycast command (Alumni Chapel)
-    minion-noir.sh           Raycast command (Minion Noir)
-    sage.sh                  Raycast command (Sage)
-    oxford.sh                Raycast command (Oxford)
-    noir-plus.sh             Raycast command (Noir Plus)
-  package.json              Dependencies
+  samples/                  Sample output for each style
+  styles/                   CSS stylesheets (one per style)
+  fonts/                    Font download links
+  raycast/                  Raycast script commands
 ```
 
 ## Customization
@@ -367,8 +348,7 @@ md2pdf/
 ### Creating a New Style
 
 1. Copy an existing CSS file in `styles/` and modify it
-2. Create a new entry point (copy `alumni-chapel.mjs`, change the CSS filename)
-3. Run `./install.sh` to regenerate wrapper scripts
+2. Run `./install.sh` to regenerate wrapper scripts
 
 ### Changing the Output Directory
 

@@ -65,62 +65,19 @@ echo "Config saved to config.json"
 echo ""
 echo "Generating wrapper scripts..."
 
-# Terminal wrappers
-cat > "$SCRIPT_DIR/alumni-chapel.sh" << EOF
+# Terminal and Obsidian wrappers (all styles via md2pdf.mjs)
+for STYLE in alumni-chapel minion-noir sage oxford noir-plus; do
+  cat > "$SCRIPT_DIR/$STYLE.sh" << EOF
 #!/bin/bash
-exec "$NODE_PATH" "$SCRIPT_DIR/alumni-chapel.mjs" "\$@"
+exec "$NODE_PATH" "$SCRIPT_DIR/md2pdf.mjs" "$STYLE" "\$@"
 EOF
 
-cat > "$SCRIPT_DIR/minion-noir.sh" << EOF
-#!/bin/bash
-exec "$NODE_PATH" "$SCRIPT_DIR/minion-noir.mjs" "\$@"
-EOF
-
-cat > "$SCRIPT_DIR/sage.sh" << EOF
-#!/bin/bash
-exec "$NODE_PATH" "$SCRIPT_DIR/sage.mjs" "\$@"
-EOF
-
-cat > "$SCRIPT_DIR/oxford.sh" << EOF
-#!/bin/bash
-exec "$NODE_PATH" "$SCRIPT_DIR/oxford.mjs" "\$@"
-EOF
-
-cat > "$SCRIPT_DIR/noir-plus.sh" << EOF
-#!/bin/bash
-exec "$NODE_PATH" "$SCRIPT_DIR/noir-plus.mjs" "\$@"
-EOF
-
-# Obsidian wrappers
-cat > "$SCRIPT_DIR/obsidian-alumni-chapel.sh" << EOF
+  cat > "$SCRIPT_DIR/obsidian-$STYLE.sh" << EOF
 #!/bin/bash
 mkdir -p "$OUTPUT_DIR"
-"$NODE_PATH" "$SCRIPT_DIR/alumni-chapel.mjs" "\$1" "$OUTPUT_DIR"
+"$NODE_PATH" "$SCRIPT_DIR/md2pdf.mjs" "$STYLE" "\$1" "$OUTPUT_DIR"
 EOF
-
-cat > "$SCRIPT_DIR/obsidian-minion-noir.sh" << EOF
-#!/bin/bash
-mkdir -p "$OUTPUT_DIR"
-"$NODE_PATH" "$SCRIPT_DIR/minion-noir.mjs" "\$1" "$OUTPUT_DIR"
-EOF
-
-cat > "$SCRIPT_DIR/obsidian-sage.sh" << EOF
-#!/bin/bash
-mkdir -p "$OUTPUT_DIR"
-"$NODE_PATH" "$SCRIPT_DIR/sage.mjs" "\$1" "$OUTPUT_DIR"
-EOF
-
-cat > "$SCRIPT_DIR/obsidian-oxford.sh" << EOF
-#!/bin/bash
-mkdir -p "$OUTPUT_DIR"
-"$NODE_PATH" "$SCRIPT_DIR/oxford.mjs" "\$1" "$OUTPUT_DIR"
-EOF
-
-cat > "$SCRIPT_DIR/obsidian-noir-plus.sh" << EOF
-#!/bin/bash
-mkdir -p "$OUTPUT_DIR"
-"$NODE_PATH" "$SCRIPT_DIR/noir-plus.mjs" "\$1" "$OUTPUT_DIR"
-EOF
+done
 
 chmod +x "$SCRIPT_DIR"/*.sh
 
@@ -131,11 +88,9 @@ echo ""
 BIN_DIR="$HOME/.local/bin"
 mkdir -p "$BIN_DIR"
 
-ln -sf "$SCRIPT_DIR/alumni-chapel.sh" "$BIN_DIR/alumni-chapel"
-ln -sf "$SCRIPT_DIR/minion-noir.sh" "$BIN_DIR/minion-noir"
-ln -sf "$SCRIPT_DIR/sage.sh" "$BIN_DIR/sage"
-ln -sf "$SCRIPT_DIR/oxford.sh" "$BIN_DIR/oxford"
-ln -sf "$SCRIPT_DIR/noir-plus.sh" "$BIN_DIR/noir-plus"
+for STYLE in alumni-chapel minion-noir sage oxford noir-plus; do
+  ln -sf "$SCRIPT_DIR/$STYLE.sh" "$BIN_DIR/$STYLE"
+done
 
 echo "Commands linked: alumni-chapel, minion-noir, sage, oxford, noir-plus"
 if ! echo "$PATH" | tr ':' '\n' | grep -q "$BIN_DIR"; then

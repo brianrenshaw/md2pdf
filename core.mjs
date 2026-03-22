@@ -156,10 +156,10 @@ async function convert(inputPath, outputPath, css) {
 }
 
 // ── Public entry point ──────────────────────────────────────────────────
-export async function run(cssFilename) {
+export async function run(cssFilename, argOffset = 2) {
   const config = loadConfig();
   const cssPath = stylePath(cssFilename);
-  const args = process.argv.slice(2);
+  const args = process.argv.slice(argOffset);
   if (args.length === 0) {
     const scriptName = path.basename(process.argv[1], ".mjs");
     console.error(`Usage: ${scriptName} <file.md | folder> [output-dir]`);

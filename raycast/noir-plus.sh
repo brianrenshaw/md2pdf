@@ -45,7 +45,7 @@ TARGET="${TARGET%/}"
 echo "Converting: $TARGET"
 echo "---"
 
-"$NODE_PATH" "$SCRIPT_DIR/noir-plus.mjs" "$TARGET"
+"$NODE_PATH" "$SCRIPT_DIR/md2pdf.mjs" "noir-plus" "$TARGET"
 EXIT_CODE=$?
 
 if [ $EXIT_CODE -eq 0 ]; then
