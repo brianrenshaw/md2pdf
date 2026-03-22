@@ -4,11 +4,11 @@ Convert Markdown files to professionally styled PDFs using Puppeteer. Includes f
 
 | Command | Style | Sample | Description |
 |---------|-------|--------|-------------|
-| `alumni-chapel` | Alumni Chapel | [**View PDF**](samples/css-test-document-alumni-chapel.pdf?raw=true) | Navy, gold, and green — inspired by Southern Seminary's brand palette |
-| `minion-noir` | Minion Noir | [**View PDF**](samples/css-test-document-minion-noir.pdf?raw=true) | Monochrome — all black and gray |
-| `sage` | Sage | [**View PDF**](samples/sage-sample.pdf?raw=true) | Clean Swiss minimalist — cool blue-gray sans-serif |
-| `oxford` | Oxford | [**View PDF**](samples/oxford-sample.pdf?raw=true) | Warm serif academic — navy and burgundy with New York typeface |
-| `noir-plus` | Noir Plus | [**View PDF**](samples/noir-plus-sample.pdf?raw=true) | Modern dark mode — dark background with vibrant accents |
+| `alumni-chapel` | Alumni Chapel | [**Download PDF**](https://raw.githubusercontent.com/brianrenshaw/md2pdf/main/samples/css-test-document-alumni-chapel.pdf) | Navy, gold, and green — inspired by Southern Seminary's brand palette |
+| `minion-noir` | Minion Noir | [**Download PDF**](https://raw.githubusercontent.com/brianrenshaw/md2pdf/main/samples/css-test-document-minion-noir.pdf) | Monochrome — all black and gray |
+| `sage` | Sage | [**Download PDF**](https://raw.githubusercontent.com/brianrenshaw/md2pdf/main/samples/sage-sample.pdf) | Clean Swiss minimalist — cool blue-gray sans-serif |
+| `oxford` | Oxford | [**Download PDF**](https://raw.githubusercontent.com/brianrenshaw/md2pdf/main/samples/oxford-sample.pdf) | Warm serif academic — navy and burgundy with New York typeface |
+| `noir-plus` | Noir Plus | [**Download PDF**](https://raw.githubusercontent.com/brianrenshaw/md2pdf/main/samples/noir-plus-sample.pdf) | Modern dark mode — dark background with vibrant accents |
 
 All styles support callout boxes, auto-generated table of contents, definition lists, footnotes, and PDF bookmarks.
 
