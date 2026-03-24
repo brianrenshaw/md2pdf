@@ -1,0 +1,351 @@
+/* =========================================================================
+   Cardinals – St. Louis Cardinals Heritage Style
+   Classic, traditional design inspired by the Cardinals brand
+   Created: 2026-03-24 with Claude Code
+
+   Typefaces: Roboto Slab (headings), Inter (body), JetBrains Mono (code)
+   Colors:    Cardinal Red #C41E3A, Midnight Navy #0C2340, Yellow #FEDB00
+   ========================================================================= */
+
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600&family=JetBrains+Mono:wght@400&family=Roboto+Slab:ital,wght@0,400;0,600;0,700;1,400;1,700&display=swap');
+
+/* ---------- Color Variables ---------- */
+:root {
+    --cardinal-red: #C41E3A;
+    --navy: #0C2340;
+    --yellow: #FEDB00;
+    --body: #0C2340;
+    --subtle: #4A5568;
+    --border: #E2D9D9;
+    --surface: #FDF5F6;
+    --code-bg: #0E1B2E;
+    --code-text: #E8ECF1;
+    --link: #C41E3A;
+    --link-hover: #9B1830;
+    --callout-note-bg: #EEF0F5;
+    --callout-warning-bg: #FDF5F0;
+    --callout-tip-bg: #F0F5EF;
+}
+
+/* ---------- Hide YAML Frontmatter ---------- */
+pre.frontmatter, .frontmatter { display: none; }
+
+/* ---------- Base ---------- */
+body {
+    -webkit-font-smoothing: antialiased;
+    background: #fff;
+    color: var(--body);
+    font-family: "Inter", "Source Sans 3", sans-serif;
+    font-weight: 400;
+    font-size: 11.5pt;
+    line-height: 1.5;
+    margin: 30px 0 0;
+}
+
+#wrapper {
+    max-width: 800px !important;
+    margin: 0 auto;
+    padding: 20px 20px 600px !important;
+}
+
+/* ---------- Headings ---------- */
+
+/* H1: Cardinal Red, bold */
+h1 {
+    font-family: "Roboto Slab", "Merriweather", serif;
+    font-weight: 700;
+    font-size: 22pt;
+    line-height: 1.2;
+    color: var(--cardinal-red);
+    margin: 1.6rem 0 0.4rem;
+    padding-bottom: 6px;
+    border-bottom: 2px solid var(--cardinal-red);
+}
+
+/* H2: Navy, subtle bottom border */
+h2 {
+    font-family: "Roboto Slab", "Merriweather", serif;
+    font-weight: 700;
+    font-size: 15pt;
+    line-height: 1.2;
+    color: var(--navy);
+    margin: 2rem 0 0.3rem;
+    padding-bottom: 4px;
+    border-bottom: 1px solid var(--border);
+}
+
+/* H3: Navy, bold italic */
+h3 {
+    font-family: "Roboto Slab", "Merriweather", serif;
+    font-weight: 700;
+    font-style: italic;
+    font-size: 13pt;
+    line-height: 1.2;
+    color: var(--navy);
+    margin: 1.4rem 0 0.3rem;
+}
+
+/* H4: Navy, semibold */
+h4 {
+    font-family: "Roboto Slab", "Merriweather", serif;
+    font-weight: 600;
+    font-size: 12pt;
+    line-height: 1.2;
+    color: var(--navy);
+    margin: 1rem 0 0.3rem;
+}
+
+/* H5: Cardinal Red, uppercase small caps */
+h5 {
+    font-family: "Roboto Slab", "Merriweather", serif;
+    font-weight: 600;
+    font-size: 10pt;
+    line-height: 1.2;
+    color: var(--cardinal-red);
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    margin: 0.9rem 0 0.3rem;
+}
+
+/* H6: Subtle, italic */
+h6 {
+    font-family: "Roboto Slab", "Merriweather", serif;
+    font-weight: 600;
+    font-style: italic;
+    font-size: 10pt;
+    line-height: 1.2;
+    color: var(--subtle);
+    margin: 0.9rem 0 0.3rem;
+}
+
+/* ---------- Text & Links ---------- */
+p, td, div {
+    margin: 0 0 1em;
+    overflow-wrap: break-word;
+}
+
+a {
+    color: var(--link);
+    text-decoration: underline;
+}
+
+a:hover {
+    color: var(--link-hover);
+}
+
+strong {
+    color: var(--navy);
+}
+
+/* ---------- Lists ---------- */
+ul, ol { padding-left: 2em; }
+ul > li:not(.task-list-item)::before,
+ol > li:before { color: var(--body); }
+
+/* ---------- Block-quotes ---------- */
+blockquote {
+    margin: 2em 0;
+    padding: 0.5em 1.5em;
+    border-left: 3px solid var(--cardinal-red);
+    background: var(--surface);
+    font-style: italic;
+}
+
+/* ---------- Horizontal Rules ---------- */
+hr {
+    border: none;
+    border-top: 1px solid var(--cardinal-red);
+    margin: 2em 0;
+}
+
+/* ---------- Tables ---------- */
+table {
+    border-collapse: collapse;
+    border: 0.5px solid var(--border);
+    border-top: 2px solid var(--yellow);
+    width: 100%;
+    border-radius: 6px;
+    overflow: hidden;
+    margin: 0 0 1.1em;
+    table-layout: auto;
+}
+
+table th {
+    background: var(--navy);
+    color: #fff;
+    font-size: 0.95em;
+    font-weight: 600;
+    padding: 0.45em 0.7em;
+    text-align: left;
+}
+
+th:first-child,
+td:first-child {
+    width: 30%;
+}
+
+table tr:nth-child(even) { background: var(--surface); }
+
+table td {
+    padding: 0.45em 1em;
+    font-size: 0.9em;
+    border-bottom: 1px solid var(--border);
+    vertical-align: top;
+}
+
+/* ---------- Code & Mark ---------- */
+code {
+    font-family: "JetBrains Mono", "Fira Code", monospace;
+    font-size: 0.88em;
+    background: #f0ecf0;
+    color: var(--navy);
+    padding: 2px 5px;
+    border-radius: 4px;
+}
+
+pre {
+    overflow: auto;
+    padding: 0.75em 1em;
+    line-height: 1.4;
+    white-space: pre;
+    background: var(--code-bg);
+    border-radius: 6px;
+}
+
+pre code {
+    font-family: "JetBrains Mono", "Fira Code", monospace;
+    font-size: 0.88em;
+    background: none;
+    color: var(--code-text);
+    padding: 0;
+    border-radius: 0;
+}
+
+mark {
+    background: #FEF3C7;
+    padding: 0 4px;
+    border-radius: 4px;
+}
+
+/* ---------- Footnotes ---------- */
+.footnote, .footnotes {
+    font-size: 0.85em;
+    color: var(--subtle);
+}
+
+/* ---------- Figure Captions ---------- */
+figcaption {
+    font-size: 0.85em;
+    color: var(--subtle);
+    text-align: center;
+    margin-top: 0.3em;
+}
+
+/* ---------- Callout Boxes (md2pdf only) ---------- */
+.callout {
+    margin: 1.5em 0;
+    padding: 0.8em 1.2em;
+    border-left: 4px solid var(--subtle);
+    border-radius: 0 6px 6px 0;
+    background: var(--surface);
+}
+
+.callout-title {
+    font-weight: 700;
+    font-size: 0.85em;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    margin-bottom: 0.4em;
+    color: var(--subtle);
+}
+
+.callout-note {
+    border-left-color: var(--navy);
+    background: var(--callout-note-bg);
+}
+.callout-note .callout-title { color: var(--navy); }
+
+.callout-warning {
+    border-left-color: var(--cardinal-red);
+    background: var(--callout-warning-bg);
+}
+.callout-warning .callout-title { color: var(--cardinal-red); }
+
+.callout-tip {
+    border-left-color: #37765B;
+    background: var(--callout-tip-bg);
+}
+.callout-tip .callout-title { color: #37765B; }
+
+/* ---------- Table of Contents (md2pdf only) ---------- */
+.table-of-contents {
+    font-size: 0.9em;
+    line-height: 1.6;
+    margin: 1.5em 0;
+    padding: 0.8em 1.2em;
+    background: var(--surface);
+    border-radius: 6px;
+}
+
+.table-of-contents ul {
+    list-style: none;
+    padding-left: 0;
+    margin: 0;
+}
+
+.table-of-contents ul ul {
+    padding-left: 1.5em;
+}
+
+.table-of-contents a {
+    color: var(--navy);
+    text-decoration: none;
+}
+
+.table-of-contents a:hover {
+    text-decoration: underline;
+}
+
+/* ---------- Definition Lists (md2pdf only) ---------- */
+dl {
+    margin: 1em 0;
+}
+
+dt {
+    font-weight: 700;
+    color: var(--navy);
+    margin-top: 0.8em;
+}
+
+dd {
+    margin-left: 1.5em;
+    margin-bottom: 0.5em;
+}
+
+/* ---------- Print (PDF) ---------- */
+@media print {
+    * {
+        -webkit-print-color-adjust: exact;
+        print-color-adjust: exact;
+    }
+
+    h1, h2, h3, h4, h5, h6 {
+        page-break-after: avoid;
+        break-after: avoid;
+    }
+
+    table, figure, img, blockquote, .callout, dl {
+        page-break-inside: avoid;
+        break-inside: avoid;
+    }
+
+    p {
+        orphans: 3;
+        widows: 3;
+    }
+
+    tr {
+        page-break-inside: avoid;
+        break-inside: avoid;
+    }
+}

@@ -67,7 +67,12 @@ function collectMarkdownFiles(target) {
   return [];
 }
 
+function stripFrontmatter(source) {
+  return source.replace(/^---\r?\n[\s\S]*?\r?\n---\r?\n?/, "");
+}
+
 function extractDirectives(source) {
+  source = stripFrontmatter(source);
   let footLeft = "";
   let showHeader = true;
 

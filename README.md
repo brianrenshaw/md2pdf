@@ -1,6 +1,6 @@
 # md2pdf — Styled Markdown to PDF
 
-Convert Markdown files to professionally styled PDFs using Puppeteer. Includes five styles with a shared rendering engine.
+Convert Markdown files to professionally styled PDFs using Puppeteer. Includes six styles with a shared rendering engine.
 
 | Command | Style | Sample | Description |
 |---------|-------|--------|-------------|
@@ -9,6 +9,7 @@ Convert Markdown files to professionally styled PDFs using Puppeteer. Includes f
 | `sage` | Sage | [**Download PDF**](https://raw.githubusercontent.com/brianrenshaw/md2pdf/main/samples/sage-sample.pdf) | Clean Swiss minimalist — cool blue-gray sans-serif |
 | `oxford` | Oxford | [**Download PDF**](https://raw.githubusercontent.com/brianrenshaw/md2pdf/main/samples/oxford-sample.pdf) | Warm serif academic — navy and burgundy with New York typeface |
 | `noir-plus` | Noir Plus | [**Download PDF**](https://raw.githubusercontent.com/brianrenshaw/md2pdf/main/samples/noir-plus-sample.pdf) | Modern dark mode — dark background with vibrant accents |
+| `cardinals` | Cardinals | [**Download PDF**](https://raw.githubusercontent.com/brianrenshaw/md2pdf/main/samples/cardinals-sample.pdf) | Classic heritage — St. Louis Cardinals red, navy, and gold |
 
 All styles support callout boxes, auto-generated table of contents, definition lists, footnotes, and PDF bookmarks.
 
@@ -35,6 +36,8 @@ Three font families are required. Download each one, then double-click the font 
 | [Lato](https://fonts.google.com/specimen/Lato) | Alumni Chapel (tables, subheadings) | [Google Fonts](https://fonts.google.com/specimen/Lato) |
 | [STIX](https://github.com/stipub/stixfonts) | Alumni Chapel (H1, blockquotes) | [GitHub](https://github.com/stipub/stixfonts) |
 | [New York](https://developer.apple.com/fonts/) | Oxford (body text, headings) | [Apple Fonts](https://developer.apple.com/fonts/) |
+| [Roboto Slab](https://fonts.google.com/specimen/Roboto+Slab) | Cardinals (headings) | [Google Fonts](https://fonts.google.com/specimen/Roboto+Slab) |
+| [Inter](https://fonts.google.com/specimen/Inter) | Cardinals (body text) | [Google Fonts](https://fonts.google.com/specimen/Inter) |
 
 **Which fonts do I need?**
 
@@ -45,6 +48,7 @@ Three font families are required. Download each one, then double-click the font 
 | Sage | None (uses system fonts) |
 | Oxford | New York (+ Minion Pro fallback) |
 | Noir Plus | None (uses system fonts) |
+| Cardinals | None (uses Google Fonts, loaded automatically) |
 
 ### Step 3: Run the installer
 
@@ -110,6 +114,7 @@ minion-noir report.md
 sage report.md
 oxford report.md
 noir-plus report.md
+cardinals report.md
 ```
 
 Supported file extensions: `.md`, `.markdown`, `.txt`
@@ -202,6 +207,14 @@ Always compare against the previous term's baseline.
 | warning | Orange (#ff8c00) | Dark amber |
 | tip | Mint (#52d273) | Dark green |
 
+**Cardinals callout colors:**
+
+| Type | Accent | Background |
+|------|--------|------------|
+| note | Navy (#0C2340) | Light navy |
+| warning | Cardinal Red (#C41E3A) | Light rose |
+| tip | Green (#37765B) | Light green |
+
 ### Table of Contents
 
 Place `[[toc]]` on its own line to auto-generate a table of contents from H2, H3, and H4 headings. If omitted, no TOC appears.
@@ -252,6 +265,7 @@ minion-noir report.md
 sage report.md
 oxford report.md
 noir-plus report.md
+cardinals report.md
 ```
 
 ### Raycast
@@ -260,7 +274,7 @@ Add the `raycast/` directory as a Script Command directory in Raycast:
 
 Raycast > Settings > Extensions > Script Commands > Add Script Directory
 
-Five commands will appear: **Alumni Chapel PDF**, **Minion Noir PDF**, **Sage PDF**, **Oxford PDF**, and **Noir Plus PDF**.
+Six commands will appear: **Alumni Chapel PDF**, **Minion Noir PDF**, **Sage PDF**, **Oxford PDF**, **Noir Plus PDF**, and **Cardinals PDF**.
 
 ### Obsidian
 
@@ -294,7 +308,7 @@ if (runner.execute([tmpPath])) {
 }
 ```
 
-For other styles, change `"alumni-chapel"` to `"minion-noir"`, `"sage"`, `"oxford"`, or `"noir-plus"`.
+For other styles, change `"alumni-chapel"` to `"minion-noir"`, `"sage"`, `"oxford"`, `"noir-plus"`, or `"cardinals"`.
 
 ### Drafts (iOS / iPadOS)
 
