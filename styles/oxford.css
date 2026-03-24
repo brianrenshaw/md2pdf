@@ -192,7 +192,8 @@ pre {
     overflow: auto;
     padding: 0.75em 1em;
     line-height: 1.4;
-    white-space: pre;
+    white-space: pre-wrap;
+    word-wrap: break-word;
 }
 
 mark {
