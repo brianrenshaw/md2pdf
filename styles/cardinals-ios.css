@@ -1,23 +1,20 @@
-/* Alumni Chapel iOS
+/* Cardinals iOS
 
    =========================================================================
-   Alumni Chapel – iOS Version for Drafts App
+   Cardinals – iOS Version for Drafts App
    Embedded in a Draft tagged "css" via the "Preview/Print with CSS" action.
    No #wrapper div, no custom fonts, no CSS variables, no @media print.
-   Based on: sbts-brand.css
+   Based on: cardinals.css
 
    Font mapping:
-     STIX         → Georgia, "Times New Roman", serif (heavier weight)
-     Minion Pro   → Georgia, "Times New Roman", serif
-     Lato         → -apple-system, "Helvetica Neue", Helvetica, Arial, sans-serif
+     Roboto Slab   → Georgia, "Times New Roman", serif
+     Inter          → -apple-system, "Helvetica Neue", Helvetica, Arial, sans-serif
+     JetBrains Mono → -apple-system, "Helvetica Neue", Helvetica, Arial, sans-serif
 
-   Brand colors:
-     Navy #072643, Gold #BB902D, Green #37765B,
-     Gray #63666A, Mid Gray #D6D6D0, Light Gray #EAEAE6
+   Palette: Cardinal Red #C41E3A, Navy #0C2340, Yellow #FEDB00
 
    Note: md2pdf-only syntax (::: callout fences) will render as plain text
    in Drafts. The content inside callouts renders normally as paragraphs.
-   Directive links ([[foot-left]], [[no-header]], [[toc]]) are hidden below.
    ========================================================================= */
 
 /* ---------- Hide YAML Frontmatter ---------- */
@@ -28,11 +25,11 @@ body {
     -webkit-font-smoothing: antialiased;
     -webkit-text-size-adjust: 100%;
     background: #fff;
-    color: #000;
-    font-family: Georgia, "Times New Roman", serif;
-    font-weight: 500;
+    color: #0C2340;
+    font-family: -apple-system, "Helvetica Neue", Helvetica, Arial, sans-serif;
+    font-weight: 400;
     font-size: 11pt;
-    line-height: 1.45;
+    line-height: 1.5;
     max-width: 800px;
     margin: 30px auto 0;
     padding: 20px 20px 40px;
@@ -45,63 +42,60 @@ h1 {
     font-weight: 700;
     font-size: 20pt;
     line-height: 1.2;
-    color: #072643;
-    margin: 1.6rem 0 0.8rem;
+    color: #C41E3A;
+    margin: 1.6rem 0 0.4rem;
     padding-bottom: 6px;
-    border-bottom: 2px solid #BB902D;
+    border-bottom: 2px solid #C41E3A;
 }
 
 h2 {
-    font-family: -apple-system, "Helvetica Neue", Helvetica, Arial, sans-serif;
-    font-weight: 400;
-    font-size: 11pt;
+    font-family: Georgia, "Times New Roman", serif;
+    font-weight: 700;
+    font-size: 13pt;
     line-height: 1.2;
-    color: #BB902D;
-    text-transform: uppercase;
-    letter-spacing: 0.12em;
-    margin: 2.5rem 0 0.8rem;
+    color: #0C2340;
+    margin: 2rem 0 0.3rem;
     padding-bottom: 4px;
-    border-bottom: 1px solid #BB902D;
+    border-bottom: 1px solid #E2D9D9;
 }
 
 h3 {
     font-family: Georgia, "Times New Roman", serif;
     font-weight: 700;
     font-style: italic;
-    font-size: 13pt;
+    font-size: 12pt;
     line-height: 1.2;
-    color: #072643;
-    margin: 1.4rem 0 0.5rem;
+    color: #0C2340;
+    margin: 1.4rem 0 0.3rem;
 }
 
 h4 {
     font-family: Georgia, "Times New Roman", serif;
     font-weight: 600;
-    font-size: 12pt;
+    font-size: 11pt;
     line-height: 1.2;
-    color: #072643;
+    color: #0C2340;
     margin: 1rem 0 0.3rem;
 }
 
 h5 {
-    font-family: -apple-system, "Helvetica Neue", Helvetica, Arial, sans-serif;
+    font-family: Georgia, "Times New Roman", serif;
     font-weight: 600;
     font-size: 9.5pt;
     line-height: 1.2;
-    color: #BB902D;
+    color: #C41E3A;
     text-transform: uppercase;
-    letter-spacing: 0.08em;
+    letter-spacing: 0.06em;
     margin: 0.9rem 0 0.3rem;
 }
 
 h6 {
-    font-family: -apple-system, "Helvetica Neue", Helvetica, Arial, sans-serif;
+    font-family: Georgia, "Times New Roman", serif;
     font-weight: 600;
+    font-style: italic;
     font-size: 9pt;
     line-height: 1.2;
-    color: #63666A;
-    text-transform: uppercase;
-    letter-spacing: 0.08em;
+    color: #4A5568;
     margin: 0.9rem 0 0.3rem;
 }
 
@@ -112,12 +106,12 @@ p, td, div {
 }
 
 a {
-    color: #072643;
+    color: #C41E3A;
     text-decoration: underline;
 }
 
 strong {
-    color: #072643;
+    color: #0C2340;
 }
 
 /* ---------- Lists ---------- */
@@ -127,23 +121,23 @@ ul, ol { padding-left: 2em; }
 blockquote {
     margin: 2em 0;
     padding: 0.5em 1.5em;
-    border-left: 4px solid #BB902D;
-    background: #EAEAE6;
-    font-family: Georgia, "Times New Roman", serif;
+    border-left: 3px solid #C41E3A;
+    background: #FDF5F6;
     font-style: italic;
 }
 
 /* ---------- Horizontal Rules ---------- */
 hr {
     border: none;
-    border-top: 1px solid #BB902D;
+    border-top: 1px solid #C41E3A;
     margin: 2em 0;
 }
 
 /* ---------- Tables ---------- */
 table {
     border-collapse: collapse;
-    border: 0.5px solid #ccc;
+    border: 0.5px solid #E2D9D9;
+    border-top: 2px solid #FEDB00;
     width: 100%;
     border-radius: 6px;
     overflow: hidden;
@@ -152,8 +146,7 @@ table {
 }
 
 table th {
-    font-family: -apple-system, "Helvetica Neue", Helvetica, Arial, sans-serif;
-    background: #072643;
+    background: #0C2340;
     color: #fff;
     font-size: 0.95em;
     font-weight: 600;
@@ -166,21 +159,22 @@ td:first-child {
     width: 30%;
 }
 
-table tr:nth-child(even) { background: #EAEAE6; }
+table tr:nth-child(even) { background: #FDF5F6; }
 
 table td {
-    font-family: -apple-system, "Helvetica Neue", Helvetica, Arial, sans-serif;
     padding: 0.45em 1em;
     font-size: 0.9em;
-    border-bottom: 1px solid #ddd;
+    border-bottom: 1px solid #E2D9D9;
     vertical-align: top;
 }
 
 /* ---------- Code & Mark ---------- */
-code, pre, pre code {
-    font-family: Georgia, "Times New Roman", serif;
-    background: #EAEAE6;
-    padding: 2px 4px;
+code {
+    font-family: -apple-system, "Helvetica Neue", Helvetica, Arial, sans-serif;
+    font-size: 0.88em;
+    background: #f0ecf0;
+    color: #0C2340;
+    padding: 2px 5px;
     border-radius: 4px;
 }
 
@@ -189,32 +183,39 @@ pre {
     padding: 0.75em 1em;
     line-height: 1.4;
     white-space: pre;
+    background: #0E1B2E;
+    border-radius: 6px;
+}
+
+pre code {
+    font-family: -apple-system, "Helvetica Neue", Helvetica, Arial, sans-serif;
+    font-size: 0.88em;
+    background: none;
+    color: #E8ECF1;
+    padding: 0;
+    border-radius: 0;
 }
 
 mark {
-    background: #f5eedb;
+    background: #FEF3C7;
     padding: 0 4px;
     border-radius: 4px;
 }
 
 /* ---------- Footnotes ---------- */
 .footnote, .footnotes {
-    font-family: -apple-system, "Helvetica Neue", Helvetica, Arial, sans-serif;
     font-size: 0.85em;
-    color: #63666A;
+    color: #4A5568;
 }
 
 /* ---------- Figure Captions ---------- */
 figcaption {
-    font-family: -apple-system, "Helvetica Neue", Helvetica, Arial, sans-serif;
     font-size: 0.85em;
-    color: #63666A;
+    color: #4A5568;
     text-align: center;
     margin-top: 0.3em;
 }
 
 /* ---------- Directives ---------- */
-/* Use HTML comment format for cross-platform compatibility:
-   <!-- foot-left: Your text here -->
-   <!-- no-header -->
-   Comments are invisible in all renderers. */
+/* md2pdf directives ([[foot-left]], [[no-header]], etc.) should be
+   removed from your document before previewing in Drafts. */

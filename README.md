@@ -227,6 +227,28 @@ Place `[[toc]]` on its own line to auto-generate a table of contents from H2, H3
 ## First Section
 ```
 
+To control which heading levels appear in the TOC, add a `[[toc-levels]]` directive **before** `[[toc]]`. Both are required — `[[toc-levels]]` sets the config, `[[toc]]` places the TOC. Use a comma-separated list or a range:
+
+| Directive | Headings Included |
+|-----------|-------------------|
+| `[[toc-levels:2]]` | H2 only |
+| `[[toc-levels:2,3]]` | H2 + H3 |
+| `[[toc-levels:1-3]]` | H1 + H2 + H3 |
+| `[[toc-levels:1,2]]` | H1 + H2 |
+| *(no directive)* | H2 + H3 + H4 (default) |
+
+```markdown
+[[toc-levels:2,3]]
+[[toc]]
+
+# Main Title (excluded from TOC)
+## Section One
+### Subsection
+#### Sub-subsection (excluded from TOC)
+```
+
+If you use `[[toc-levels]]` without `[[toc]]`, no TOC will appear. If you use `[[toc]]` without `[[toc-levels]]`, the default levels (H2–H4) are used.
+
 ### Definition Lists
 
 ```markdown
@@ -246,11 +268,13 @@ Directives are special inline commands that control PDF output. They are strippe
 | `[[foot-left]] Your text` | Places custom text in the bottom-left footer of every page |
 | `[[no-header]]` | Removes the document title from the top-left header |
 | `[[no-footer]]` | Removes the entire footer (page numbers and foot-left text) |
+| `[[toc-levels:N]]` | Sets which headings appear in TOC (e.g., `2,3` or `1-4`; default: H2–H4) |
 
 ```markdown
 [[foot-left]] Updated: 2026-03-19 v2.1
 [[no-header]]
 [[no-footer]]
+[[toc-levels:2,3]]
 ```
 
 Place directives on their own line, anywhere in the document. These are md2pdf-only — remove them before previewing in Drafts on iOS.
@@ -318,8 +342,17 @@ Drafts on iOS cannot run shell scripts, but you can preview and print styled doc
 
 1. Install the action from the link above
 2. Create a new draft for each style you want, tagged with `css`:
-   * Title the first line `Alumni Chapel iOS` or `Minion Noir iOS`
-   * Paste the contents of `styles/alumni-chapel-ios.css` or `styles/minion-noir-ios.css` below the title
+   * Title the first line with the style name (e.g., `Alumni Chapel iOS`, `Cardinals iOS`)
+   * Paste the contents of the matching iOS CSS file below the title
+
+   | Style | iOS CSS File |
+   |-------|-------------|
+   | Alumni Chapel | `styles/alumni-chapel-ios.css` |
+   | Minion Noir | `styles/minion-noir-ios.css` |
+   | Sage | `styles/sage-ios.css` |
+   | Oxford | `styles/oxford-ios.css` |
+   | Noir Plus | `styles/noir-plus-ios.css` |
+   | Cardinals | `styles/cardinals-ios.css` |
 3. Open any markdown draft, run the action, and select your CSS from the picker
 
 **iOS limitations:**
@@ -328,7 +361,7 @@ The following md2pdf features do not work in Drafts on iOS and should be removed
 
 | Feature | Syntax to remove |
 |---------|-----------------|
-| Directives | `[[foot-left]] ...`, `[[no-header]]`, `[[no-footer]]` |
+| Directives | `[[foot-left]] ...`, `[[no-header]]`, `[[no-footer]]`, `[[toc-levels:N]]` |
 | Callout boxes | `::: note`, `::: warning`, `::: tip`, and closing `:::` |
 | Auto table of contents | `[[toc]]` |
 | Definition lists | `Term` / `:   Definition` (unless using MultiMarkdown parser) |

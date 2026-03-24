@@ -30,25 +30,31 @@ export function stylePath(name) {
 }
 
 // ── Markdown parser ─────────────────────────────────────────────────────
-const md = markdownit({ html: true, typographer: true, linkify: true })
-  .use(footnote)
-  .use(anchor, { permalink: false })
-  .use(toc, { includeLevel: [2, 3, 4] })
-  .use(deflist);
+function createParser(tocLevels) {
+  const includeLevel = tocLevels || [2, 3, 4];
 
-// Register callout container types: note, warning, tip
-for (const type of ["note", "warning", "tip"]) {
-  const defaultTitle = type.charAt(0).toUpperCase() + type.slice(1);
-  md.use(container, type, {
-    render(tokens, idx) {
-      if (tokens[idx].nesting === 1) {
-        const info = tokens[idx].info.trim().slice(type.length).trim();
-        const title = info || defaultTitle;
-        return `<div class="callout callout-${type}"><div class="callout-title">${title}</div>\n`;
-      }
-      return "</div>\n";
-    },
-  });
+  const md = markdownit({ html: true, typographer: true, linkify: true })
+    .use(footnote)
+    .use(anchor, { permalink: false })
+    .use(toc, { includeLevel })
+    .use(deflist);
+
+  // Register callout container types: note, warning, tip
+  for (const type of ["note", "warning", "tip"]) {
+    const defaultTitle = type.charAt(0).toUpperCase() + type.slice(1);
+    md.use(container, type, {
+      render(tokens, idx) {
+        if (tokens[idx].nesting === 1) {
+          const info = tokens[idx].info.trim().slice(type.length).trim();
+          const title = info || defaultTitle;
+          return `<div class="callout callout-${type}"><div class="callout-title">${title}</div>\n`;
+        }
+        return "</div>\n";
+      },
+    });
+  }
+
+  return md;
 }
 
 // ── Helpers ─────────────────────────────────────────────────────────────
@@ -95,10 +101,25 @@ function extractDirectives(source) {
     source = source.replace(footerMatch[0], "");
   }
 
-  return { footLeft, showHeader, showFooter, source: source.trim() };
+  let tocLevels = null;
+  const tocMatch = source.match(/^\[\[toc-levels:([1-6,\s-]+)\]\]\s*$/m);
+  if (tocMatch) {
+    const spec = tocMatch[1].replace(/\s/g, "");
+    const rangeMatch = spec.match(/^(\d)-(\d)$/);
+    if (rangeMatch) {
+      const start = parseInt(rangeMatch[1], 10);
+      const end = parseInt(rangeMatch[2], 10);
+      tocLevels = Array.from({ length: end - start + 1 }, (_, i) => start + i);
+    } else {
+      tocLevels = spec.split(",").map(Number);
+    }
+    source = source.replace(tocMatch[0], "");
+  }
+
+  return { footLeft, showHeader, showFooter, tocLevels, source: source.trim() };
 }
 
-function buildHTML(markdownSource, title, css) {
+function buildHTML(markdownSource, title, css, md) {
   const body = md.render(markdownSource);
 
   return `<!DOCTYPE html>
@@ -126,9 +147,10 @@ function buildHTML(markdownSource, title, css) {
 // ── Convert ─────────────────────────────────────────────────────────────
 async function convert(inputPath, outputPath, css) {
   const raw = fs.readFileSync(inputPath, "utf-8");
-  const { footLeft, showHeader, showFooter, source } = extractDirectives(raw);
+  const { footLeft, showHeader, showFooter, tocLevels, source } = extractDirectives(raw);
   const title = path.basename(inputPath, path.extname(inputPath));
-  const html = buildHTML(source, title, css);
+  const md = createParser(tocLevels);
+  const html = buildHTML(source, title, css, md);
 
   const browser = await puppeteer.launch({ headless: true });
   const page = await browser.newPage();

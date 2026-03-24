@@ -1,70 +1,102 @@
-/* Minion Noir iOS
+/* Oxford iOS
 
    =========================================================================
-   Minion Noir – iOS Version for Drafts App
+   Oxford – iOS Version for Drafts App
    Embedded in a Draft tagged "css" via the "Preview/Print with CSS" action.
-   No #wrapper div, no custom fonts, no @media print.
-   Based on: minion-noir.css
+   No #wrapper div, no custom fonts, no CSS variables, no @media print.
+   Based on: oxford.css
 
    Font mapping:
+     New York   → Georgia, "Times New Roman", serif
      Minion Pro → Georgia, "Times New Roman", serif
 
-   Palette: Black / gray monochrome
+   Palette: Navy #1f3a5d, Burgundy #8b4513, Body #2c3e50
 
    Note: md2pdf-only syntax (::: callout fences) will render as plain text
    in Drafts. The content inside callouts renders normally as paragraphs.
    ========================================================================= */
-
-/* ---------- Hide YAML Frontmatter ---------- */
-pre.frontmatter, .frontmatter { display: none; }
 
 /* ---------- Base ---------- */
 body {
     -webkit-font-smoothing: antialiased;
     -webkit-text-size-adjust: 100%;
     background: #fff;
-    color: #000;
+    color: #2c3e50;
     font-family: Georgia, "Times New Roman", serif;
-    font-weight: 500;
-    font-size: 11pt;
-    line-height: 1.45;
+    font-weight: 400;
+    font-size: 11.5pt;
+    line-height: 1.5;
     max-width: 800px;
     margin: 30px auto 0;
     padding: 20px 20px 40px;
 }
 
+/* ---------- Hide YAML Frontmatter ---------- */
+pre.frontmatter, .frontmatter { display: none; }
+
 /* ---------- Headings ---------- */
-h1, h2, h3, h4, h5, h6 {
-    font-family: Georgia, "Times New Roman", serif;
-    font-weight: 700;
-    line-height: 1.2;
-    color: #000;
-}
 
 h1 {
-    font-size: 20pt;
-    margin: 1.6rem 0 0.8rem;
+    font-family: Georgia, "Times New Roman", serif;
+    font-weight: 700;
+    font-size: 22pt;
+    line-height: 1.2;
+    color: #1f3a5d;
+    margin: 1.6rem 0 0.4rem;
     padding-bottom: 6px;
-    border-bottom: 1.5px solid #000;
-}
-h2 {
-    font-size: 12pt;
-    color: #444;
-    text-transform: uppercase;
-    letter-spacing: 0.08em;
-    margin: 2.5rem 0 0.8rem;
-    padding-bottom: 4px;
-    border-bottom: 1px solid #ccc;
-}
-h3 {
-    font-size: 13pt;
-    font-style: italic;
-    margin: 1.2rem 0 0.5rem;
+    border-bottom: 2px solid #8b4513;
 }
 
-h4 { font-size: 12pt; font-weight: 600; margin: 1rem 0 0.3rem; }
-h5 { font-size: 11.5pt; font-weight: 600; margin: 0.9rem 0 0.3rem; }
-h6 { font-size: 11pt; font-style: italic; font-weight: 600; margin: 0.9rem 0 0.3rem; }
+h2 {
+    font-family: Georgia, "Times New Roman", serif;
+    font-weight: 700;
+    font-size: 15pt;
+    line-height: 1.2;
+    color: #8b4513;
+    margin: 2rem 0 0.3rem;
+    padding-bottom: 4px;
+    border-bottom: 1px solid #d4c5a9;
+}
+
+h3 {
+    font-family: Georgia, "Times New Roman", serif;
+    font-weight: 700;
+    font-style: italic;
+    font-size: 13pt;
+    line-height: 1.2;
+    color: #1f3a5d;
+    margin: 1.4rem 0 0.3rem;
+}
+
+h4 {
+    font-family: Georgia, "Times New Roman", serif;
+    font-weight: 600;
+    font-size: 12pt;
+    line-height: 1.2;
+    color: #1f3a5d;
+    margin: 1rem 0 0.3rem;
+}
+
+h5 {
+    font-family: Georgia, "Times New Roman", serif;
+    font-weight: 600;
+    font-size: 10pt;
+    line-height: 1.2;
+    color: #8b4513;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    margin: 0.9rem 0 0.3rem;
+}
+
+h6 {
+    font-family: Georgia, "Times New Roman", serif;
+    font-weight: 600;
+    font-style: italic;
+    font-size: 10pt;
+    line-height: 1.2;
+    color: #6c757d;
+    margin: 0.9rem 0 0.3rem;
+}
 
 /* ---------- Text & Links ---------- */
 p, td, div {
@@ -73,8 +105,12 @@ p, td, div {
 }
 
 a {
-    color: #000;
+    color: #8b4513;
     text-decoration: underline;
+}
+
+strong {
+    color: #1f3a5d;
 }
 
 /* ---------- Lists ---------- */
@@ -83,35 +119,34 @@ ul, ol { padding-left: 2em; }
 /* ---------- Block-quotes ---------- */
 blockquote {
     margin: 2em 0;
-    padding: 0.2em 1.5em;
-    border-left: 4px solid #666;
-    background: #f7f7f7;
+    padding: 0.5em 1.5em;
+    border-left: 3px solid #8b4513;
+    background: #faf8f3;
     font-style: italic;
 }
 
 /* ---------- Horizontal Rules ---------- */
 hr {
     border: none;
-    border-top: 1px solid #ccc;
+    border-top: 1px solid #d4c5a9;
     margin: 2em 0;
 }
 
 /* ---------- Tables ---------- */
 table {
     border-collapse: collapse;
-    border: .5px solid #000;
+    border: 0.5px solid #d4c5a9;
     width: 100%;
     border-radius: 6px;
     overflow: hidden;
     margin: 0 0 1.1em;
     table-layout: auto;
-    font-family: inherit;
 }
 
 table th {
-    background: #333;
+    background: #1f3a5d;
     color: #fff;
-    font-size: 1em;
+    font-size: 0.95em;
     font-weight: 600;
     padding: 0.45em 0.7em;
     text-align: left;
@@ -122,18 +157,20 @@ td:first-child {
     width: 30%;
 }
 
-table tr:nth-child(even) { background: #f3f3f3; }
+table tr:nth-child(even) { background: #faf8f3; }
+
 table td {
-    padding: 0.6em 1em;
+    padding: 0.45em 1em;
     font-size: 0.9em;
-    border-bottom: 1px solid #ccc;
+    border-bottom: 1px solid #d4c5a9;
     vertical-align: top;
 }
 
 /* ---------- Code & Mark ---------- */
 code, pre, pre code {
     font-family: Georgia, "Times New Roman", serif;
-    background: #f5f5f5;
+    font-size: 0.95em;
+    background: #f4f1ed;
     padding: 2px 4px;
     border-radius: 4px;
 }
@@ -146,7 +183,7 @@ pre {
 }
 
 mark {
-    background: #e6e6e6;
+    background: #f5eedb;
     padding: 0 4px;
     border-radius: 4px;
 }
@@ -154,13 +191,13 @@ mark {
 /* ---------- Footnotes ---------- */
 .footnote, .footnotes {
     font-size: 0.85em;
-    color: #666;
+    color: #6c757d;
 }
 
 /* ---------- Figure Captions ---------- */
 figcaption {
     font-size: 0.85em;
-    color: #666;
+    color: #6c757d;
     text-align: center;
     margin-top: 0.3em;
 }
