@@ -1,0 +1,229 @@
+/* Anthropic iOS
+
+   =========================================================================
+   Anthropic – iOS Version for Drafts App
+   Embedded in a Draft tagged "css" via the "Preview/Print with CSS" action.
+   No #wrapper div, no custom fonts, no CSS variables, no @media print.
+   Based on: anthropic.css
+
+   Font mapping:
+     Source Serif 4 → Georgia, "Times New Roman", serif
+     DM Sans        → -apple-system, "Helvetica Neue", Helvetica, Arial, sans-serif
+     JetBrains Mono → -apple-system, "Helvetica Neue", Helvetica, Arial, sans-serif
+
+   Palette: Ink #191714, Terra Cotta #C4642A, Sand #FAF8F5
+
+   Note: md2pdf-only syntax (::: callout fences) will render as plain text
+   in Drafts. The content inside callouts renders normally as paragraphs.
+   ========================================================================= */
+
+/* ---------- Hide YAML Frontmatter ---------- */
+pre.frontmatter, .frontmatter { display: none; }
+
+/* ---------- Base ---------- */
+body {
+    -webkit-font-smoothing: antialiased;
+    -webkit-text-size-adjust: 100%;
+    background: #fff;
+    color: #2C2924;
+    font-family: -apple-system, "Helvetica Neue", Helvetica, Arial, sans-serif;
+    font-weight: 400;
+    font-size: 11pt;
+    line-height: 1.6;
+    max-width: 800px;
+    margin: 30px auto 0;
+    padding: 20px 20px 40px;
+}
+
+/* ---------- Headings ---------- */
+
+/* H1: Serif, bold — terra cotta underline */
+h1 {
+    font-family: Georgia, "Times New Roman", serif;
+    font-weight: 700;
+    font-size: 22pt;
+    line-height: 1.2;
+    color: #191714;
+    margin: 1.6rem 0 0.4rem;
+    padding-bottom: 6px;
+    border-bottom: 2px solid #C4642A;
+}
+
+/* H2: Sans, semibold — sand divider */
+h2 {
+    font-family: -apple-system, "Helvetica Neue", Helvetica, Arial, sans-serif;
+    font-weight: 600;
+    font-size: 15pt;
+    line-height: 1.2;
+    color: #191714;
+    margin: 2rem 0 0.3rem;
+    padding-bottom: 4px;
+    border-bottom: 1px solid #D4CCC0;
+}
+
+/* H3: Serif, bold italic */
+h3 {
+    font-family: Georgia, "Times New Roman", serif;
+    font-weight: 700;
+    font-style: italic;
+    font-size: 13pt;
+    line-height: 1.2;
+    color: #2C2924;
+    margin: 1.4rem 0 0.3rem;
+}
+
+/* H4: Sans, semibold */
+h4 {
+    font-family: -apple-system, "Helvetica Neue", Helvetica, Arial, sans-serif;
+    font-weight: 600;
+    font-size: 12pt;
+    line-height: 1.2;
+    color: #2C2924;
+    margin: 1rem 0 0.3rem;
+}
+
+/* H5: Sans, uppercase label */
+h5 {
+    font-family: -apple-system, "Helvetica Neue", Helvetica, Arial, sans-serif;
+    font-weight: 600;
+    font-size: 9.5pt;
+    line-height: 1.2;
+    color: #756A5E;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    margin: 0.9rem 0 0.3rem;
+}
+
+/* H6: Sans, uppercase, lighter */
+h6 {
+    font-family: -apple-system, "Helvetica Neue", Helvetica, Arial, sans-serif;
+    font-weight: 600;
+    font-size: 9pt;
+    line-height: 1.2;
+    color: #948778;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    margin: 0.9rem 0 0.3rem;
+}
+
+/* ---------- Text & Links ---------- */
+p, td, div {
+    margin: 0 0 1em;
+    overflow-wrap: break-word;
+}
+
+a {
+    color: #C4642A;
+    text-decoration: underline;
+}
+
+strong {
+    color: #191714;
+}
+
+/* ---------- Lists ---------- */
+ul, ol { padding-left: 2em; }
+
+/* ---------- Block-quotes ---------- */
+blockquote {
+    margin: 2em 0;
+    padding: 0.5em 1.5em;
+    border-left: 3px solid #D4CCC0;
+    background: #FAF8F5;
+    font-family: Georgia, "Times New Roman", serif;
+    font-style: italic;
+    color: #584F45;
+}
+
+/* ---------- Horizontal Rules ---------- */
+hr {
+    border: none;
+    border-top: 1px solid #D4CCC0;
+    margin: 2em 0;
+}
+
+/* ---------- Tables ---------- */
+table {
+    border-collapse: collapse;
+    border: 0.5px solid #E8E2D9;
+    width: 100%;
+    border-radius: 6px;
+    overflow: hidden;
+    margin: 0 0 1.1em;
+    table-layout: auto;
+}
+
+table th {
+    background: #191714;
+    color: #FAF8F5;
+    font-size: 0.95em;
+    font-weight: 600;
+    padding: 0.45em 0.7em;
+    text-align: left;
+}
+
+th:first-child,
+td:first-child {
+    width: 30%;
+}
+
+table tr:nth-child(even) { background: #FAF8F5; }
+
+table td {
+    padding: 0.45em 1em;
+    font-size: 0.9em;
+    border-bottom: 1px solid #E8E2D9;
+    vertical-align: top;
+}
+
+/* ---------- Code & Mark ---------- */
+code {
+    font-family: -apple-system, "Helvetica Neue", Helvetica, Arial, sans-serif;
+    font-size: 0.9em;
+    background: #F4F0EB;
+    color: #2C2924;
+    padding: 2px 5px;
+    border-radius: 4px;
+}
+
+pre {
+    overflow: auto;
+    padding: 0.75em 1em;
+    line-height: 1.4;
+    white-space: pre;
+    background: #1E1C1A;
+    border-radius: 6px;
+}
+
+pre code {
+    font-family: -apple-system, "Helvetica Neue", Helvetica, Arial, sans-serif;
+    font-size: 0.9em;
+    background: none;
+    color: #E8E2D9;
+    padding: 0;
+    border-radius: 0;
+}
+
+mark {
+    background: #FBE8D4;
+    padding: 0 4px;
+    border-radius: 4px;
+}
+
+/* ---------- Footnotes ---------- */
+.footnote, .footnotes {
+    font-size: 0.85em;
+    color: #756A5E;
+}
+
+/* ---------- Figure Captions ---------- */
+figcaption {
+    font-size: 0.85em;
+    color: #756A5E;
+    text-align: center;
+    margin-top: 0.3em;
+}
+
+/* ---------- Directives ---------- */
+/* md2pdf directives ([[foot-left]], [[no-header]], etc.) should be
+   removed from your document before previewing in Drafts. */

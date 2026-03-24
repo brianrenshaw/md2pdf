@@ -1,0 +1,366 @@
+/* =========================================================================
+   Anthropic – Warm Serif + Sans Style
+   Inspired by Anthropic's design language: warm, confident, restrained
+   Created: 2026-03-24 with Claude Code
+
+   Typefaces: Source Serif 4 (headings), DM Sans (body), JetBrains Mono (code)
+   Colors:    Ink #191714, Terra Cotta #C4642A, Sand #FAF8F5
+              Teal #1A7A6D (reserved)
+   ========================================================================= */
+
+@import url('https://fonts.googleapis.com/css2?family=DM+Sans:ital,wght@0,400;0,500;0,600;0,700;1,400;1,700&family=JetBrains+Mono:wght@400&family=Source+Serif+4:ital,opsz,wght@0,8..60,400;0,8..60,600;0,8..60,700;1,8..60,400;1,8..60,700&display=swap');
+
+/* ---------- Color Variables ---------- */
+:root {
+    --ink-900: #191714;
+    --ink-800: #2C2924;
+    --ink-700: #3D3832;
+    --ink-600: #584F45;
+    --ink-500: #756A5E;
+    --ink-400: #948778;
+    --accent: #C4642A;
+    --accent-hover: #A85221;
+    --accent-light: #FBE8D4;
+    --sand-50: #FAF8F5;
+    --sand-100: #F4F0EB;
+    --sand-200: #E8E2D9;
+    --sand-300: #D4CCC0;
+    --code-bg: #1E1C1A;
+    --code-text: #E8E2D9;
+    --info: #4A7AB8;
+    --warning: #C49A2A;
+    --success: #4A8C5C;
+    --callout-note-bg: #EBF0F8;
+    --callout-warning-bg: #FBF5E8;
+    --callout-tip-bg: #EDF5F0;
+}
+
+/* ---------- Hide YAML Frontmatter ---------- */
+pre.frontmatter, .frontmatter { display: none; }
+
+/* ---------- Base ---------- */
+body {
+    -webkit-font-smoothing: antialiased;
+    background: #fff;
+    color: var(--ink-800);
+    font-family: "DM Sans", -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif;
+    font-weight: 400;
+    font-size: 11pt;
+    line-height: 1.6;
+    margin: 30px 0 0;
+}
+
+#wrapper {
+    max-width: 800px !important;
+    margin: 0 auto;
+    padding: 20px 20px 600px !important;
+}
+
+/* ---------- Headings ---------- */
+
+/* H1: Source Serif 4, bold — terra cotta underline (accent is earned) */
+h1 {
+    font-family: "Source Serif 4", "New York", Georgia, serif;
+    font-weight: 700;
+    font-size: 22pt;
+    line-height: 1.2;
+    color: var(--ink-900);
+    margin: 1.6rem 0 0.4rem;
+    padding-bottom: 6px;
+    border-bottom: 2px solid var(--accent);
+}
+
+/* H2: DM Sans, semibold — structural divider */
+h2 {
+    font-family: "DM Sans", -apple-system, sans-serif;
+    font-weight: 600;
+    font-size: 15pt;
+    line-height: 1.2;
+    color: var(--ink-900);
+    margin: 2rem 0 0.3rem;
+    padding-bottom: 4px;
+    border-bottom: 1px solid var(--sand-300);
+}
+
+/* H3: Source Serif 4, bold italic — editorial voice returns */
+h3 {
+    font-family: "Source Serif 4", "New York", Georgia, serif;
+    font-weight: 700;
+    font-style: italic;
+    font-size: 13pt;
+    line-height: 1.2;
+    color: var(--ink-800);
+    margin: 1.4rem 0 0.3rem;
+}
+
+/* H4: DM Sans, semibold */
+h4 {
+    font-family: "DM Sans", -apple-system, sans-serif;
+    font-weight: 600;
+    font-size: 12pt;
+    line-height: 1.2;
+    color: var(--ink-800);
+    margin: 1rem 0 0.3rem;
+}
+
+/* H5: DM Sans, uppercase label */
+h5 {
+    font-family: "DM Sans", -apple-system, sans-serif;
+    font-weight: 600;
+    font-size: 9.5pt;
+    line-height: 1.2;
+    color: var(--ink-500);
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    margin: 0.9rem 0 0.3rem;
+}
+
+/* H6: DM Sans, uppercase, lighter */
+h6 {
+    font-family: "DM Sans", -apple-system, sans-serif;
+    font-weight: 600;
+    font-size: 9pt;
+    line-height: 1.2;
+    color: var(--ink-400);
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    margin: 0.9rem 0 0.3rem;
+}
+
+/* ---------- Text & Links ---------- */
+p, td, div {
+    margin: 0 0 1em;
+    overflow-wrap: break-word;
+}
+
+a {
+    color: var(--accent);
+    text-decoration: underline;
+}
+
+a:hover {
+    color: var(--accent-hover);
+}
+
+strong {
+    color: var(--ink-900);
+}
+
+/* ---------- Lists ---------- */
+ul, ol { padding-left: 2em; }
+ul > li:not(.task-list-item)::before,
+ol > li:before { color: var(--ink-800); }
+
+/* ---------- Block-quotes ---------- */
+blockquote {
+    margin: 2em 0;
+    padding: 0.5em 1.5em;
+    border-left: 3px solid var(--sand-300);
+    background: var(--sand-50);
+    font-family: "Source Serif 4", "New York", Georgia, serif;
+    font-style: italic;
+    color: var(--ink-600);
+}
+
+/* ---------- Horizontal Rules ---------- */
+hr {
+    border: none;
+    border-top: 1px solid var(--sand-300);
+    margin: 2em 0;
+}
+
+/* ---------- Tables ---------- */
+table {
+    border-collapse: collapse;
+    border: 0.5px solid var(--sand-200);
+    width: 100%;
+    border-radius: 6px;
+    overflow: hidden;
+    margin: 0 0 1.1em;
+    table-layout: auto;
+}
+
+table th {
+    background: var(--ink-900);
+    color: var(--sand-50);
+    font-family: "DM Sans", -apple-system, sans-serif;
+    font-size: 0.95em;
+    font-weight: 600;
+    padding: 0.45em 0.7em;
+    text-align: left;
+}
+
+th:first-child,
+td:first-child {
+    width: 30%;
+}
+
+table tr:nth-child(even) { background: var(--sand-50); }
+
+table td {
+    font-family: "DM Sans", -apple-system, sans-serif;
+    padding: 0.45em 1em;
+    font-size: 0.9em;
+    border-bottom: 1px solid var(--sand-200);
+    vertical-align: top;
+}
+
+/* ---------- Code & Mark ---------- */
+code {
+    font-family: "JetBrains Mono", "SF Mono", "Fira Code", "Consolas", monospace;
+    font-size: 0.9em;
+    background: var(--sand-100);
+    color: var(--ink-800);
+    padding: 2px 5px;
+    border-radius: 4px;
+}
+
+pre {
+    overflow: auto;
+    padding: 0.75em 1em;
+    line-height: 1.4;
+    white-space: pre;
+    background: var(--code-bg);
+    border-radius: 6px;
+}
+
+pre code {
+    font-family: "JetBrains Mono", "SF Mono", "Fira Code", "Consolas", monospace;
+    font-size: 0.9em;
+    background: none;
+    color: var(--code-text);
+    padding: 0;
+    border-radius: 0;
+}
+
+mark {
+    background: var(--accent-light);
+    padding: 0 4px;
+    border-radius: 4px;
+}
+
+/* ---------- Footnotes ---------- */
+.footnote, .footnotes {
+    font-size: 0.85em;
+    color: var(--ink-500);
+}
+
+/* ---------- Figure Captions ---------- */
+figcaption {
+    font-size: 0.85em;
+    color: var(--ink-500);
+    text-align: center;
+    margin-top: 0.3em;
+}
+
+/* ---------- Callout Boxes (md2pdf only) ---------- */
+.callout {
+    margin: 1.5em 0;
+    padding: 0.8em 1.2em;
+    border-left: 4px solid var(--sand-300);
+    border-radius: 0 8px 8px 0;
+    background: var(--sand-50);
+}
+
+.callout-title {
+    font-family: "DM Sans", -apple-system, sans-serif;
+    font-weight: 700;
+    font-size: 0.85em;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    margin-bottom: 0.4em;
+    color: var(--ink-500);
+}
+
+.callout-note {
+    border-left-color: var(--info);
+    background: var(--callout-note-bg);
+}
+.callout-note .callout-title { color: var(--info); }
+
+.callout-warning {
+    border-left-color: var(--warning);
+    background: var(--callout-warning-bg);
+}
+.callout-warning .callout-title { color: var(--warning); }
+
+.callout-tip {
+    border-left-color: var(--success);
+    background: var(--callout-tip-bg);
+}
+.callout-tip .callout-title { color: var(--success); }
+
+/* ---------- Table of Contents (md2pdf only) ---------- */
+.table-of-contents {
+    font-family: "DM Sans", -apple-system, sans-serif;
+    font-size: 0.9em;
+    line-height: 1.6;
+    margin: 1.5em 0;
+    padding: 0.8em 1.2em;
+    background: var(--sand-50);
+    border-radius: 8px;
+}
+
+.table-of-contents ul {
+    list-style: none;
+    padding-left: 0;
+    margin: 0;
+}
+
+.table-of-contents ul ul {
+    padding-left: 1.5em;
+}
+
+.table-of-contents a {
+    color: var(--ink-700);
+    text-decoration: none;
+}
+
+.table-of-contents a:hover {
+    text-decoration: underline;
+}
+
+/* ---------- Definition Lists (md2pdf only) ---------- */
+dl {
+    margin: 1em 0;
+}
+
+dt {
+    font-family: "Source Serif 4", "New York", Georgia, serif;
+    font-weight: 600;
+    color: var(--ink-900);
+    margin-top: 0.8em;
+}
+
+dd {
+    margin-left: 1.5em;
+    margin-bottom: 0.5em;
+}
+
+/* ---------- Print (PDF) ---------- */
+@media print {
+    * {
+        -webkit-print-color-adjust: exact;
+        print-color-adjust: exact;
+    }
+
+    h1, h2, h3, h4, h5, h6 {
+        page-break-after: avoid;
+        break-after: avoid;
+    }
+
+    table, figure, img, blockquote, .callout, dl {
+        page-break-inside: avoid;
+        break-inside: avoid;
+    }
+
+    p {
+        orphans: 3;
+        widows: 3;
+    }
+
+    tr {
+        page-break-inside: avoid;
+        break-inside: avoid;
+    }
+}

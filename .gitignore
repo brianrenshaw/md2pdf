@@ -18,6 +18,10 @@ config.json
 /obsidian-sage.sh
 /obsidian-oxford.sh
 /obsidian-noir-plus.sh
+/cardinals.sh
+/anthropic.sh
+/obsidian-cardinals.sh
+/obsidian-anthropic.sh
 
 # Local Node.js installation (downloaded by installer)
 .node/

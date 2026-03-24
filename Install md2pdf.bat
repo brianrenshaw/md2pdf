@@ -154,7 +154,17 @@ echo @echo off
 echo "%NODE_CMD%" "%SCRIPT_DIR%\noir-plus.mjs" %%*
 ) > "%SCRIPT_DIR%\noir-plus.bat"
 
-echo Wrapper scripts generated: alumni-chapel.bat, minion-noir.bat, sage.bat, oxford.bat, noir-plus.bat
+(
+echo @echo off
+echo "%NODE_CMD%" "%SCRIPT_DIR%\md2pdf.mjs" "cardinals" %%*
+) > "%SCRIPT_DIR%\cardinals.bat"
+
+(
+echo @echo off
+echo "%NODE_CMD%" "%SCRIPT_DIR%\md2pdf.mjs" "anthropic" %%*
+) > "%SCRIPT_DIR%\anthropic.bat"
+
+echo Wrapper scripts generated: alumni-chapel.bat, minion-noir.bat, sage.bat, oxford.bat, noir-plus.bat, cardinals.bat, anthropic.bat
 
 :: ── Font check ─────────────────────────────────────────────────────────
 echo.
@@ -221,6 +231,8 @@ echo            minion-noir.bat report.md
 echo            sage.bat report.md
 echo            oxford.bat report.md
 echo            noir-plus.bat report.md
+echo            cardinals.bat report.md
+echo            anthropic.bat report.md
 echo.
 echo   Output:  %OUTPUT_DIR%
 echo.

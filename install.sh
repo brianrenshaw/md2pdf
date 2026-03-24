@@ -66,7 +66,7 @@ echo ""
 echo "Generating wrapper scripts..."
 
 # Terminal and Obsidian wrappers (all styles via md2pdf.mjs)
-for STYLE in alumni-chapel minion-noir sage oxford noir-plus cardinals; do
+for STYLE in alumni-chapel minion-noir sage oxford noir-plus cardinals anthropic; do
   cat > "$SCRIPT_DIR/$STYLE.sh" << EOF
 #!/bin/bash
 exec "$NODE_PATH" "$SCRIPT_DIR/md2pdf.mjs" "$STYLE" "\$@"
@@ -88,11 +88,11 @@ echo ""
 BIN_DIR="$HOME/.local/bin"
 mkdir -p "$BIN_DIR"
 
-for STYLE in alumni-chapel minion-noir sage oxford noir-plus cardinals; do
+for STYLE in alumni-chapel minion-noir sage oxford noir-plus cardinals anthropic; do
   ln -sf "$SCRIPT_DIR/$STYLE.sh" "$BIN_DIR/$STYLE"
 done
 
-echo "Commands linked: alumni-chapel, minion-noir, sage, oxford, noir-plus, cardinals"
+echo "Commands linked: alumni-chapel, minion-noir, sage, oxford, noir-plus, cardinals, anthropic"
 if ! echo "$PATH" | tr ':' '\n' | grep -q "$BIN_DIR"; then
   echo "Add this to your shell profile to use them:"
   echo "  export PATH=\"$BIN_DIR:\$PATH\""
@@ -115,6 +115,7 @@ if [ -d "$MARKED_CSS_DIR" ]; then
     ln -sf "$SCRIPT_DIR/styles/oxford.css" "$MARKED_CSS_DIR/Oxford.css"
     ln -sf "$SCRIPT_DIR/styles/noir-plus.css" "$MARKED_CSS_DIR/Noir Plus.css"
     ln -sf "$SCRIPT_DIR/styles/cardinals.css" "$MARKED_CSS_DIR/Cardinals.css"
+    ln -sf "$SCRIPT_DIR/styles/anthropic.css" "$MARKED_CSS_DIR/Anthropic.css"
     echo "CSS files symlinked to Marked 2."
   fi
 else
@@ -188,6 +189,7 @@ echo "              sage report.md"
 echo "              oxford report.md"
 echo "              noir-plus report.md"
 echo "              cardinals report.md"
+echo "              anthropic report.md"
 echo ""
 echo "  Output:     $OUTPUT_DIR"
 echo ""
@@ -198,6 +200,7 @@ echo "    $SCRIPT_DIR/obsidian-sage.sh {{file_path:absolute}}"
 echo "    $SCRIPT_DIR/obsidian-oxford.sh {{file_path:absolute}}"
 echo "    $SCRIPT_DIR/obsidian-noir-plus.sh {{file_path:absolute}}"
 echo "    $SCRIPT_DIR/obsidian-cardinals.sh {{file_path:absolute}}"
+echo "    $SCRIPT_DIR/obsidian-anthropic.sh {{file_path:absolute}}"
 echo ""
 echo "  Drafts:     See README.md for action scripts"
 echo ""

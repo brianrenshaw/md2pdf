@@ -1,6 +1,6 @@
 # md2pdf — Styled Markdown to PDF
 
-Convert Markdown files to professionally styled PDFs using Puppeteer. Includes six styles with a shared rendering engine.
+Convert Markdown files to professionally styled PDFs using Puppeteer. Includes seven styles with a shared rendering engine.
 
 | Command | Style | Sample | Description |
 |---------|-------|--------|-------------|
@@ -10,6 +10,7 @@ Convert Markdown files to professionally styled PDFs using Puppeteer. Includes s
 | `oxford` | Oxford | [**Download PDF**](https://raw.githubusercontent.com/brianrenshaw/md2pdf/main/samples/oxford-sample.pdf) | Warm serif academic — navy and burgundy with New York typeface |
 | `noir-plus` | Noir Plus | [**Download PDF**](https://raw.githubusercontent.com/brianrenshaw/md2pdf/main/samples/noir-plus-sample.pdf) | Modern dark mode — dark background with vibrant accents |
 | `cardinals` | Cardinals | [**Download PDF**](https://raw.githubusercontent.com/brianrenshaw/md2pdf/main/samples/cardinals-sample.pdf) | Classic heritage — St. Louis Cardinals red, navy, and gold |
+| `anthropic` | Anthropic | [**Download PDF**](https://raw.githubusercontent.com/brianrenshaw/md2pdf/main/samples/anthropic-sample.pdf) | Warm and restrained — terra cotta accent with sand and ink tones |
 
 All styles support callout boxes, auto-generated table of contents, definition lists, footnotes, and PDF bookmarks.
 
@@ -38,6 +39,8 @@ Three font families are required. Download each one, then double-click the font 
 | [New York](https://developer.apple.com/fonts/) | Oxford (body text, headings) | [Apple Fonts](https://developer.apple.com/fonts/) |
 | [Roboto Slab](https://fonts.google.com/specimen/Roboto+Slab) | Cardinals (headings) | [Google Fonts](https://fonts.google.com/specimen/Roboto+Slab) |
 | [Inter](https://fonts.google.com/specimen/Inter) | Cardinals (body text) | [Google Fonts](https://fonts.google.com/specimen/Inter) |
+| [Source Serif 4](https://fonts.google.com/specimen/Source+Serif+4) | Anthropic (headings) | [Google Fonts](https://fonts.google.com/specimen/Source+Serif+4) |
+| [DM Sans](https://fonts.google.com/specimen/DM+Sans) | Anthropic (body text) | [Google Fonts](https://fonts.google.com/specimen/DM+Sans) |
 
 **Which fonts do I need?**
 
@@ -49,6 +52,7 @@ Three font families are required. Download each one, then double-click the font 
 | Oxford | New York (+ Minion Pro fallback) |
 | Noir Plus | None (uses system fonts) |
 | Cardinals | None (uses Google Fonts, loaded automatically) |
+| Anthropic | None (uses Google Fonts, loaded automatically) |
 
 ### Step 3: Run the installer
 
@@ -115,6 +119,7 @@ sage report.md
 oxford report.md
 noir-plus report.md
 cardinals report.md
+anthropic report.md
 ```
 
 Supported file extensions: `.md`, `.markdown`, `.txt`
@@ -215,6 +220,14 @@ Always compare against the previous term's baseline.
 | warning | Cardinal Red (#C41E3A) | Light rose |
 | tip | Green (#37765B) | Light green |
 
+**Anthropic callout colors:**
+
+| Type | Accent | Background |
+|------|--------|------------|
+| note | Blue (#4A7AB8) | Light blue |
+| warning | Gold (#C49A2A) | Light gold |
+| tip | Green (#4A8C5C) | Light green |
+
 ### Table of Contents
 
 Place `[[toc]]` on its own line to auto-generate a table of contents from H2, H3, and H4 headings. If omitted, no TOC appears.
@@ -290,6 +303,7 @@ sage report.md
 oxford report.md
 noir-plus report.md
 cardinals report.md
+anthropic report.md
 ```
 
 ### Raycast
@@ -298,7 +312,7 @@ Add the `raycast/` directory as a Script Command directory in Raycast:
 
 Raycast > Settings > Extensions > Script Commands > Add Script Directory
 
-Six commands will appear: **Alumni Chapel PDF**, **Minion Noir PDF**, **Sage PDF**, **Oxford PDF**, **Noir Plus PDF**, and **Cardinals PDF**.
+Seven commands will appear: **Alumni Chapel PDF**, **Minion Noir PDF**, **Sage PDF**, **Oxford PDF**, **Noir Plus PDF**, **Cardinals PDF**, and **Anthropic PDF**.
 
 ### Obsidian
 
@@ -332,7 +346,7 @@ if (runner.execute([tmpPath])) {
 }
 ```
 
-For other styles, change `"alumni-chapel"` to `"minion-noir"`, `"sage"`, `"oxford"`, `"noir-plus"`, or `"cardinals"`.
+For other styles, change `"alumni-chapel"` to `"minion-noir"`, `"sage"`, `"oxford"`, `"noir-plus"`, `"cardinals"`, or `"anthropic"`.
 
 ### Drafts (iOS / iPadOS)
 
@@ -353,6 +367,7 @@ Drafts on iOS cannot run shell scripts, but you can preview and print styled doc
    | Oxford | `styles/oxford-ios.css` |
    | Noir Plus | `styles/noir-plus-ios.css` |
    | Cardinals | `styles/cardinals-ios.css` |
+   | Anthropic | `styles/anthropic-ios.css` |
 3. Open any markdown draft, run the action, and select your CSS from the picker
 
 **iOS limitations:**
