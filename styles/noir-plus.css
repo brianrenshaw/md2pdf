@@ -350,7 +350,7 @@ dd {
     .footnote, .footnotes { color: #666; }
     figcaption { color: #666; }
 
-    table, figure, img, blockquote, .callout, dl {
+    table, figure, img, blockquote, .callout, dl, pre {
         page-break-inside: avoid;
         break-inside: avoid;
     }

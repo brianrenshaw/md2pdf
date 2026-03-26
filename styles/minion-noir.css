@@ -253,7 +253,7 @@ figcaption {
         break-after: avoid;
     }
 
-    table, figure, img, blockquote, .callout, dl {
+    table, figure, img, blockquote, .callout, dl, pre {
         page-break-inside: avoid;
         break-inside: avoid;
     }
