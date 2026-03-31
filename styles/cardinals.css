@@ -118,6 +118,31 @@ h6 {
     margin: 0.9rem 0 0.3rem;
 }
 
+/* ---------- Document Metadata Block ----------
+   Usage: Use H6 tags for To/From/Date labels followed by
+   a plain paragraph for each value. The H6 renders as
+   small gray uppercase (already styled), and this addition
+   tightens the spacing so the label and value read as a unit.
+
+   Markdown pattern:
+   ###### To
+   [Name], [Title], [Organization]
+
+   ###### From
+   Brian Renshaw, Vice President, Enrollment Strategy
+
+   ###### Date
+   [Date]
+
+   ---
+*/
+
+/* Collapse the gap between H6 label and its following paragraph */
+h6 + p {
+    margin-top: -0.3em;
+    margin-bottom: 0.6em;
+}
+
 /* ---------- Text & Links ---------- */
 p, td, div {
     margin: 0 0 1em;
